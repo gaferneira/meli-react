@@ -1,14 +1,9 @@
-import {
-  addFavorite, removeFavorite,
-  useAppDispatch
-} from "@/domain";
+import { addFavorite, removeFavorite, useAppDispatch } from "@/domain";
 import { Product } from "@/domain/entities";
 import { useState } from "react";
 
-const useProductTable = (favorites : Product[] | undefined) => {
-
+const useProductTable = (favorites: Product[] | undefined) => {
   const dispatch = useAppDispatch();
-
 
   const [selected, setSelected] = useState<Product[]>(favorites || []);
 
@@ -20,7 +15,7 @@ const useProductTable = (favorites : Product[] | undefined) => {
 
   const handleFavoriteChange = (product: Product) => {
     const setAsFavorite = !isFavorite(product);
-    
+
     setAsFavorite
       ? dispatch(addFavorite(product))
       : dispatch(removeFavorite(product));
@@ -31,11 +26,15 @@ const useProductTable = (favorites : Product[] | undefined) => {
     setSelected(filteredProducts);
   };
 
+  const handleAddToCart = (product: Product) => {
+    console.log("product", product);
+  };
+
   return {
     isFavorite,
     handleFavoriteChange,
+    handleAddToCart,
   };
-
 };
 
 export default useProductTable;

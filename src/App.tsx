@@ -6,6 +6,7 @@ import "@/App.css";
 
 const HomePage = lazy(() => import("@/ui/pages/Home/HomePage"));
 const FavoritesPage = lazy(() => import("@/ui/pages/Favorites/FavoritesPage"));
+const CartPage = lazy(() => import("@/ui/pages/Cart/CartPage"));
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
               <Route
                 path="/favorites"
                 element={<FavoritesPage />}
+              />
+              <Route
+                path="/cart"
+                element={<CartPage />}
               />
             </RoutesWithNotFound>
           </div>

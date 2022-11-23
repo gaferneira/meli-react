@@ -25,7 +25,6 @@ const Navbar: React.FC = () => {
               key={page.route}
               to={page.route}
             >
-              {" "}
               {page.label}
             </CustomLink>
           ))}
