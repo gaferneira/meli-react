@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import { Route } from "react-router-dom";
 
 import { LayoutContainer, Navbar, RoutesWithNotFound } from "./ui";
@@ -10,21 +10,29 @@ const FavoritesPage = lazy(() => import("@/ui/pages/Favorites/FavoritesPage"));
 function App() {
   return (
     <LayoutContainer>
-      <div className="App">
-        <Navbar />
-        <div className="container">
-          <RoutesWithNotFound>
-            <Route
-              path="/"
-              element={<HomePage />}
-            />
-            <Route
-              path="/favorites"
-              element={<FavoritesPage />}
-            />
-          </RoutesWithNotFound>
+      <Suspense
+        fallback={
+          <>
+            <h1>Loading...</h1>
+          </>
+        }
+      >
+        <div className="App">
+          <Navbar />
+          <div className="container">
+            <RoutesWithNotFound>
+              <Route
+                path="/"
+                element={<HomePage />}
+              />
+              <Route
+                path="/favorites"
+                element={<FavoritesPage />}
+              />
+            </RoutesWithNotFound>
+          </div>
         </div>
-      </div>
+      </Suspense>
     </LayoutContainer>
   );
 }
