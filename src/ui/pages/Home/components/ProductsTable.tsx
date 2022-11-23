@@ -1,25 +1,34 @@
-import { Product } from "@/domain/entities";
+import React, { useState } from "react";
 import { Checkbox } from "@mui/material";
 import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
-import React, { useState } from 'react';
+import { Product } from "@/domain/entities";
 
 export interface ProductsTableInterface {
-  products : Product[]
-  favorites : Product[]
-  clickFavoriteHandler : (product: Product, setAsFavorite: Boolean) => void
+  products: Product[];
+  favorites: Product[];
+  clickFavoriteHandler: (product: Product, setAsFavorite: Boolean) => void;
 }
 
-const ProductsTable: React.FC<ProductsTableInterface> = ({ products, favorites, clickFavoriteHandler } : ProductsTableInterface) => {
+const ProductsTable: React.FC<ProductsTableInterface> = ({
+  products,
+  favorites,
+  clickFavoriteHandler,
+}: ProductsTableInterface) => {
   const [selected, setSelected] = useState<Product[]>(favorites ?? []);
   const pageSize = 5;
 
-  const findProduct = (product: Product) => !!selected.find((p) => p.id === product.id);
-  const filterProduct = (product: Product) => selected.filter((p) => p.id !== product.id);
+  const findProduct = (product: Product) =>
+    Boolean(selected.find((p) => p.id === product.id));
+
+  const filterProduct = (product: Product) =>
+    selected.filter((p) => p.id !== product.id);
 
   const handleChange = (product: Product) => {
-    const setAsFavorite = !findProduct(product)
+    const setAsFavorite = !findProduct(product);
     clickFavoriteHandler(product, setAsFavorite);
-    const filteresProducts = setAsFavorite? [...selected, product] : filterProduct(product)
+    const filteresProducts = setAsFavorite
+      ? [...selected, product]
+      : filterProduct(product);
     setSelected(filteresProducts);
   };
 
@@ -31,13 +40,11 @@ const ProductsTable: React.FC<ProductsTableInterface> = ({ products, favorites, 
       headerName: "",
       width: 50,
       renderCell: (params: GridRenderCellParams) => (
-        <>
-          <Checkbox
-            size="small"
-            checked={findProduct(params.row)}
-            onClick={() => handleChange(params.row)}
-          />
-        </>
+        <Checkbox
+          size="small"
+          checked={findProduct(params.row)}
+          onClick={() => handleChange(params.row)}
+        />
       ),
     },
     {

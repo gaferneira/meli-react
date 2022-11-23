@@ -1,5 +1,5 @@
 import { Product } from "@/domain/entities";
-import { AnyAction, configureStore, ThunkAction } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { productsSlice, favoriteSlice } from "./slices";
 import { ProductsState } from "./slices/productsSlice";
 
@@ -15,14 +15,6 @@ const store = configureStore<AppStore>({
   },
 });
 
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  AnyAction
->;
-
+export default store;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
-export default store;
