@@ -1,7 +1,7 @@
 import { Failure } from './failure';
 
 export interface RequestState<DataType = string> {
-    data: DataType;
+    data: DataType | null;
     loading: 'idle' | 'pending';
-    error: Failure | null;
+    failure: Failure | null;
   }

@@ -1,37 +1,35 @@
+import withHookProps from "@/ui/hoc/withHookProps";
 import { CircularProgress } from "@mui/material";
 import React, { useEffect } from "react";
 import ProductsTable from "./components/ProductsTable/ProductsTable";
 import useHomePage from "./UseHomePage";
 
-const HomePage: React.FC = () => {
-  const {
-    products: productsState,
-    favorites,
-    fetchProductList
-  } = useHomePage();
+type HomePageProps = ReturnType<typeof useHomePage>;
+
+const HomePage: React.FC<HomePageProps> = ({ productState, favorites, searchProduct }: HomePageProps) => {
 
   const Error = () => <div>Error...</div>;
   const Empty = () => <div>There are no products</div>;
 
-  const data = productsState.data;
+  const data = productState.data;
 
   useEffect(() => {
-    fetchProductList();
+    searchProduct("iphone");
   }, []);
 
   return (
     <>
-      {productsState.loading === "pending" && <CircularProgress />}
-      {productsState.error && <Error />}
+      {productState.loading === "pending" && <CircularProgress />}
+      {productState.failure && <Error />}
       {data && data.length > 0 && (
         <ProductsTable
           products={data}
           favorites={favorites}
         />
       )}
-      {productsState.loading !== "pending" && data?.length === 0 && <Empty />}
+      {productState.loading !== "pending" && data?.length === 0 && <Empty />}
     </>
   );
 };
 
-export default HomePage;
+export default withHookProps(useHomePage, HomePage);

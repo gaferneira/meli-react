@@ -1,4 +1,4 @@
-import { getProducts } from "@/data";
+import { searchProducts } from "@/data";
 import { Product, RequestState } from "@/domain/entities";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -7,11 +7,11 @@ export type ProductsState = RequestState<Product[]>;
 const initialState: ProductsState = {
   data: [] as Product[],
   loading: "idle",
-  error: null,
+  failure: null,
 };
 
 export const fetchProducts = createAsyncThunk("products/fetch", async () => {
-  return await getProducts();
+  return await searchProducts("iphone");
 });
 
 export const productsSlice = createSlice({
@@ -37,7 +37,7 @@ export const productsSlice = createSlice({
       .addCase(fetchProducts.rejected, (state, action) => {
         if (state.loading === "pending") {
           state.loading = "idle";
-          state.error = action.error
+          state.failure = action.error
             ? {
                 message: action.error.message || "",
                 code: action.error.code || "",

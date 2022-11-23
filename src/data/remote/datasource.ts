@@ -12,8 +12,8 @@ interface ApiResponse {
   results: Product[];
 }
 
-export async function getProducts(): Promise<Array<Product>> {
-  const endpoint = "search?q=iphone";
+export async function searchProducts(query: string): Promise<Array<Product>> {
+  const endpoint = "search?q="+query;
   try {
     const response = await axiosInstance.get<ApiResponse>(endpoint);
     return response.data.results;

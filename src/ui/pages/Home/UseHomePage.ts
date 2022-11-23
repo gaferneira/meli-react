@@ -1,23 +1,33 @@
 import {
-  fetchProducts,
-  useAppDispatch,
-  useAppSelector,
+  ProductsState, useAppSelector
 } from "@/domain";
+import { useState } from "react";
+
+import { match } from '@/core/either';
+import { getProductsUseCase } from '@/core/service.locator';
 
 const useHomePage = () => {
-  const dispatch = useAppDispatch();
 
-  const products = useAppSelector((state) => state.products);
+  const [productState, setProductState] = useState<ProductsState>({data:[], loading:"idle", failure:null});
+
   const favorites = useAppSelector((state) => state.favorites);
 
-  const fetchProductList = () => {
-    dispatch(fetchProducts());
+  const searchProduct = async (query: string) => {
+    setProductState({data:null, loading:"pending", failure:null})
+    let data = null;
+    let failure = null;
+    match(
+      await getProductsUseCase.invoke(query),
+      (_failure) => {failure = _failure},
+      (_data) => { data = _data },
+    );
+    setProductState( {data, loading:"idle", failure})
   };
 
   return {
-    products,
+    productState,
     favorites,
-    fetchProductList
+    searchProduct
   };
 };
 
