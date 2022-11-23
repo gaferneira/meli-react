@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { CircularProgress } from "@mui/material";
 import { Product } from "@/domain/entities";
 import ProductsTable from "./components/ProductsTable";
-import useViewModel from "./HomeViewModel";
+import useHomePage from "./UseHomePage";
 
 const HomePage: React.FC = () => {
   const {
@@ -10,7 +10,7 @@ const HomePage: React.FC = () => {
     favorites,
     fetchProductList,
     updateFavorite,
-  } = useViewModel();
+  } = useHomePage();
 
   const handleFavoriteChange = (product: Product, setAsFavorite: Boolean) => {
     updateFavorite(product, setAsFavorite);
@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
           favorites={favorites}
         />
       )}
-      {productsState.loading !== "pending" && data?.length !== 0 && <Empty />}
+      {productsState.loading !== "pending" && data?.length === 0 && <Empty />}
     </>
   );
 };

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Checkbox } from "@mui/material";
 import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
 import { Product } from "@/domain/entities";
+import useProductTable from "./UseProductsTable";
 
 export interface ProductsTableInterface {
   products: Product[];
@@ -14,23 +15,13 @@ const ProductsTable: React.FC<ProductsTableInterface> = ({
   favorites,
   clickFavoriteHandler,
 }: ProductsTableInterface) => {
-  const [selected, setSelected] = useState<Product[]>(favorites ?? []);
+
   const pageSize = 5;
 
-  const findProduct = (product: Product) =>
-    Boolean(selected.find((p) => p.id === product.id));
-
-  const filterProduct = (product: Product) =>
-    selected.filter((p) => p.id !== product.id);
-
-  const handleChange = (product: Product) => {
-    const setAsFavorite = !findProduct(product);
-    clickFavoriteHandler(product, setAsFavorite);
-    const filteresProducts = setAsFavorite
-      ? [...selected, product]
-      : filterProduct(product);
-    setSelected(filteresProducts);
-  };
+  const {
+    isFavorite,
+    handleFavoriteChange
+  } = useProductTable(favorites);
 
   const columns = [
     {
@@ -40,11 +31,13 @@ const ProductsTable: React.FC<ProductsTableInterface> = ({
       headerName: "",
       width: 50,
       renderCell: (params: GridRenderCellParams) => (
-        <Checkbox
-          size="small"
-          checked={findProduct(params.row)}
-          onClick={() => handleChange(params.row)}
-        />
+        <>
+          <Checkbox
+            size="small"
+            checked={isFavorite(params.row)}
+            onClick={() => {handleFavoriteChange(params.row, clickFavoriteHandler)}}
+          />
+        </>
       ),
     },
     {

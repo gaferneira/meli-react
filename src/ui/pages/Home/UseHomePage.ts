@@ -7,7 +7,7 @@ import {
 } from "@/domain";
 import { Product } from "@/domain/entities";
 
-const HomeViewModel = () => {
+const useHomePage = () => {
   const dispatch = useAppDispatch();
 
   const products = useAppSelector((state) => state.products);
@@ -31,4 +31,4 @@ const HomeViewModel = () => {
   };
 };
 
-export default HomeViewModel;
+export default useHomePage;
