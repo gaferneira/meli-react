@@ -1,2 +1,2 @@
-export * from './either';
-export * from './service.locator';
+export * from "./Either";
+export * from "./ServiceLocator";
