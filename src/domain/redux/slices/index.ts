@@ -1,2 +1,2 @@
-export * from './favoriteSlice';
-export * from './productsSlice';
+export * from "./FavoriteSlice";
+export * from "./ProductsSlice";
