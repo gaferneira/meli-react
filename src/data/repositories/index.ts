@@ -1,2 +1,2 @@
-export * from './awsRepository';
-export * from './product.repository.impl';
+export * from "./awsRepositoryImpl";
+export * from "./ProductRepositoryImpl";

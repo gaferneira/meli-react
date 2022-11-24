@@ -1,11 +1,15 @@
 import { lazy, Suspense } from "react";
 import { Route } from "react-router-dom";
 
-import { LayoutContainer, Navbar, RoutesWithNotFound } from "./ui";
+import CircularProgress from "@mui/material/CircularProgress";
+import { LayoutContainer, Navbar, RoutesWithNotFound } from "@/UI";
 import "@/App.css";
 
 const HomePage = lazy(() => import("@/ui/pages/Home/HomePage"));
 const FavoritesPage = lazy(() => import("@/ui/pages/Favorites/FavoritesPage"));
+const DetailProduct = lazy(
+  () => import("@/UI/pages/DetailProduct/DetailProductPage")
+);
 
 function App() {
   return (
@@ -13,7 +17,7 @@ function App() {
       <Suspense
         fallback={
           <>
-            <h1>Loading...</h1>
+            <CircularProgress />
           </>
         }
       >
@@ -28,6 +32,10 @@ function App() {
               <Route
                 path="/favorites"
                 element={<FavoritesPage />}
+              />
+              <Route
+                path="/detail/:idProduct"
+                element={<DetailProduct />}
               />
             </RoutesWithNotFound>
           </div>

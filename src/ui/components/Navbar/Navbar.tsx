@@ -1,6 +1,6 @@
 import { AppBar, Box, Button, Toolbar } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { pages } from "@/domain/entities";
+//import { pages } from "@/domain/entities";
+import { pages } from "@/Domain";
 import styled from "styled-components";
 import CustomLink from "./CustomLink";
 
@@ -14,8 +14,6 @@ export const List = styled.ul`
 `;
 
 const Navbar: React.FC = () => {
-  const navigate = useNavigate();
-
   return (
     <AppBar position="fixed">
       <Toolbar>
@@ -25,7 +23,6 @@ const Navbar: React.FC = () => {
               key={page.route}
               to={page.route}
             >
-              {" "}
               {page.label}
             </CustomLink>
           ))}

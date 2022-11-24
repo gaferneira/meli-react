@@ -1,4 +1,4 @@
-import { Product } from "@/domain/entities";
+import { Product } from "@/Domain";
 import axios from "axios";
 
 const axiosInstance = axios.create({
@@ -8,15 +8,34 @@ const axiosInstance = axios.create({
   },
 });
 
-interface ApiResponse {
+interface ApiResponseProducts {
   results: Product[];
+}
+interface ApiResponseProduct {
+  data: Product;
 }
 
 export async function searchProducts(query: string): Promise<Array<Product>> {
-  const endpoint = "search?q="+query;
+  const endpoint = `/sites/MLC/search?q=${query}`;
   try {
-    const response = await axiosInstance.get<ApiResponse>(endpoint);
+    const response = await axiosInstance.get<ApiResponseProducts>(endpoint);
     return response.data.results;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function getProduct(id: string): Promise<Product> {
+  const endpoint = `/items/${id}`;
+  try {
+    const request = await axiosInstance.get<ApiResponseProduct>(endpoint);
+    const response: any = request.data;
+    return {
+      id: response.id,
+      title: response.title,
+      price: response.price,
+      thumbnail: response.thumbnail,
+    };
   } catch (err) {
     throw err;
   }

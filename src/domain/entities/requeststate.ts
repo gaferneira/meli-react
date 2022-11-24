@@ -1,7 +1,7 @@
-import { Failure } from './failure';
+import { Failure } from "@/Domain";
 
 export interface RequestState<DataType = string> {
-    data: DataType | null;
-    loading: 'idle' | 'pending';
-    failure: Failure | null;
-  }
+  data: DataType | null;
+  loading: "idle" | "pending";
+  failure: Failure | null;
+}

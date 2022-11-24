@@ -1,4 +1,4 @@
-import { searchProducts } from "@/data";
+import { searchProducts } from "@/Data";
 import { Product, RequestState } from "@/domain/entities";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
