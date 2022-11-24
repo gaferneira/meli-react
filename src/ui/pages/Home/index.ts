@@ -1,3 +1,3 @@
-export * from './components';
-export * from './HomePage';
-export * from './UseHomePage';
+export * from "./Components";
+export { default as HomePage } from "./HomePage";
+export { default as useHomePage } from "./useHomePage";

@@ -1,2 +1,2 @@
-export * from './getProduct.usecase';
-export * from './getProducts.usecase';
+export * from "./GetProductUseCase";
+export * from "./GetProductsUseCase";

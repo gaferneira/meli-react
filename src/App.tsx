@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Route } from "react-router-dom";
-
-import { LayoutContainer, Navbar, RoutesWithNotFound } from "./ui";
+import { CircularProgress } from "@mui/material";
+import { Navbar, LayoutContainer, RoutesWithNotFound } from "@/ui";
 import "@/App.css";
 
 const HomePage = lazy(() => import("@/ui/pages/Home/HomePage"));
@@ -13,7 +13,7 @@ function App() {
       <Suspense
         fallback={
           <>
-            <h1>Loading...</h1>
+            <CircularProgress />
           </>
         }
       >

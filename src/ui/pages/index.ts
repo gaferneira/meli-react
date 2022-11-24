@@ -1,2 +1,3 @@
-export * from './Favorites';
-export * from './Home';
+//export * from "./DetailProduct";
+export * from "./Favorites";
+export * from "./Home";
