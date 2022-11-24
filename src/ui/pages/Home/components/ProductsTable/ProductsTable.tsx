@@ -1,7 +1,7 @@
-import { Product } from "@/domain/entities";
+import React from "react";
 import { Checkbox } from "@mui/material";
 import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
-import React from "react";
+import { Product } from "@/domain";
 import useProductTable from "./UseProductsTable";
 
 export interface ProductsTableInterface {
@@ -13,13 +13,9 @@ const ProductsTable: React.FC<ProductsTableInterface> = ({
   products,
   favorites,
 }: ProductsTableInterface) => {
-
   const pageSize = 5;
 
-  const {
-    isFavorite,
-    handleFavoriteChange
-  } = useProductTable(favorites);
+  const { isFavorite, handleFavoriteChange } = useProductTable(favorites);
 
   const columns = [
     {
@@ -33,7 +29,9 @@ const ProductsTable: React.FC<ProductsTableInterface> = ({
           <Checkbox
             size="small"
             checked={isFavorite(params.row)}
-            onClick={() => {handleFavoriteChange(params.row)}}
+            onClick={() => {
+              handleFavoriteChange(params.row);
+            }}
           />
         </>
       ),

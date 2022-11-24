@@ -1,13 +1,15 @@
-import withHookProps from "@/ui/hoc/withHookProps";
-import { CircularProgress } from "@mui/material";
 import React, { useEffect } from "react";
-import ProductsTable from "./components/ProductsTable/ProductsTable";
+import { CircularProgress } from "@mui/material";
+import { WithHookProps, ProductsTable } from "@/ui";
 import useHomePage from "./UseHomePage";
 
 type HomePageProps = ReturnType<typeof useHomePage>;
 
-const HomePage: React.FC<HomePageProps> = ({ productState, favorites, searchProduct }: HomePageProps) => {
-
+const HomePage: React.FC<HomePageProps> = ({
+  productState,
+  favorites,
+  searchProduct,
+}: HomePageProps) => {
   const Error = () => <div>Error...</div>;
   const Empty = () => <div>There are no products</div>;
 
@@ -32,4 +34,4 @@ const HomePage: React.FC<HomePageProps> = ({ productState, favorites, searchProd
   );
 };
 
-export default withHookProps(useHomePage, HomePage);
+export default WithHookProps(useHomePage, HomePage);

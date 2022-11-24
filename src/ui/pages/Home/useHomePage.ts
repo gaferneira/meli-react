@@ -1,8 +1,6 @@
-import { ProductsState, useAppSelector } from "@/domain";
 import { useState } from "react";
-
-import { match } from "@/core/Either";
-import { getProductsUseCase } from "@/core";
+import { ProductsState, useAppSelector } from "@/domain";
+import { match, getProductsUseCase } from "@/core";
 
 const useHomePage = () => {
   const [productState, setProductState] = useState<ProductsState>({
