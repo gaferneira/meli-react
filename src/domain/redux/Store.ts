@@ -1,17 +1,22 @@
-import { Product } from "@/domain/entities";
+import { Product, Country } from "@/domain/entities";
 import { configureStore } from "@reduxjs/toolkit";
-import { productsSlice, favoriteSlice } from "./slices";
-import { ProductsState } from "./slices/productsSlice";
-
+import {
+  productsSlice,
+  favoriteSlice,
+  countrySlice,
+  ProductsState,
+} from "./slices";
 export interface AppStore {
   products: ProductsState;
   favorites: Product[];
+  country: Country;
 }
 
 const store = configureStore<AppStore>({
   reducer: {
     products: productsSlice.reducer,
     favorites: favoriteSlice.reducer,
+    country: countrySlice.reducer,
   },
 });
 

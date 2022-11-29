@@ -1,3 +1,4 @@
 export enum LocalStorageTypes {
-    FAVORITE = "favorite"
+    FAVORITE = "favorite",
+    COUNTRY = "country",
 }

@@ -8,9 +8,12 @@ export class GetProductsUseCase {
     this.repository = _repository;
   }
 
-  async invoke(query: string): Promise<Either<Failure, Product[]>> {
+  async invoke(
+    country: string,
+    query: string
+  ): Promise<Either<Failure, Product[]>> {
     try {
-      const data = await this.repository.getProducts(query);
+      const data = await this.repository.getProducts(country, query);
       return Right(data);
     } catch (exception) {
       const failure = { message: "exception", code: "500" };

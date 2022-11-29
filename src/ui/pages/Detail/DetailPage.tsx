@@ -1,4 +1,5 @@
-import withHookProps from "@/ui/hoc/WithHookProps";
+import { useEffect } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import {
   Badge,
   Card,
@@ -7,8 +8,7 @@ import {
   CircularProgress,
   Typography,
 } from "@mui/material";
-import { useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import withHookProps from "@/ui/hoc/WithHookProps";
 import useDetailPage from "./useDetailPage";
 
 type DetailProps = ReturnType<typeof useDetailPage>;
@@ -29,8 +29,6 @@ const DetailPage: React.FC<DetailProps> = ({
   useEffect(() => {
     if (idProduct) getProduct(idProduct);
   }, [idProduct]);
-
-  console.log("initialInfo", initialInfo);
 
   return (
     <>
@@ -61,26 +59,25 @@ const DetailPage: React.FC<DetailProps> = ({
                   color="text.secondary"
                 >
                   {data.price} | {data.thumbnail ?? "vacio"}
-                  {initialInfo && (
-                    <>
-                      <p>quantity: {initialInfo.available_quantity}</p>
-                      <p>tags</p>
-                      {initialInfo.tags.map((tag: string, index: number) => (
-                        <div>
-                          <Badge
-                            badgeContent={tag}
-                            key={index}
-                            color="primary"
-                            anchorOrigin={{
-                              vertical: "top",
-                              horizontal: "right",
-                            }}
-                          ></Badge>
-                        </div>
-                      ))}
-                    </>
-                  )}
                 </Typography>
+                {initialInfo && (
+                  <>
+                    <p>quantity: {initialInfo.available_quantity}</p>
+                    <p>tags</p>
+                    {initialInfo.tags.map((tag: string, index: number) => (
+                      <div key={`product-${index}`}>
+                        <Badge
+                          badgeContent={tag}
+                          color="primary"
+                          anchorOrigin={{
+                            vertical: "top",
+                            horizontal: "right",
+                          }}
+                        ></Badge>
+                      </div>
+                    ))}
+                  </>
+                )}
               </CardContent>
             </Card>
           )}

@@ -1,20 +1,25 @@
 import React from "react";
 import { CircularProgress } from "@mui/material";
-import { WithHookProps, ProductsTable } from "@/ui";
+import { WithHookProps, ProductsTable, SelectCountry, Search } from "@/ui";
 import useHomePage from "./useHomePage";
-import { Search } from "@/ui/components/Search";
 
 type HomePageProps = ReturnType<typeof useHomePage>;
 
 const HomePage: React.FC<HomePageProps> = ({
+  country,
   productState,
   favorites,
   searchProduct,
+  onSelectCountry,
 }: HomePageProps) => {
   const Error = () => <div>Error...</div>;
   const Empty = () => <div>There are no products</div>;
 
   const data = productState.data;
+
+  if (country.code === "") {
+    return <SelectCountry onSelectCountry={onSelectCountry} />;
+  }
 
   return (
     <>
