@@ -3,5 +3,5 @@ export const setLocalStorage = (key: string, value: any) => {
 };
 
 export const getLocalStorage = (key: string) => {
-  return localStorage.getItem(key);
+  return localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)!) : undefined;
 };

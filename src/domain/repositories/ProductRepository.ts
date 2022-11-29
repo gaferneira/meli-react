@@ -1,6 +1,6 @@
-import { Product } from '../entities/product';
+import { Product } from "../entities/Product";
 
 export interface ProductRepository {
-    getProducts(query: string): Promise<Product[]>;
-    getProduct(id: string): Promise<Product>;
+  getProducts(country: string, query: string): Promise<Product[]>;
+  getProduct(id: string): Promise<Product>;
 }
