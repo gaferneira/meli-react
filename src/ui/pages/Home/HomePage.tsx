@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { CircularProgress } from "@mui/material";
 import { WithHookProps, ProductsTable } from "@/ui";
 import useHomePage from "./useHomePage";
+import { Search } from "@/ui/components/Search";
 
 type HomePageProps = ReturnType<typeof useHomePage>;
 
@@ -15,12 +16,13 @@ const HomePage: React.FC<HomePageProps> = ({
 
   const data = productState.data;
 
-  useEffect(() => {
-    searchProduct("iphone");
-  }, []);
-
   return (
     <>
+      <Search
+        onChange={searchProduct}
+        placeholder="Search a product"
+        limit={2}
+      />
       {productState.loading === "pending" && <CircularProgress />}
       {productState.failure && <Error />}
       {data && data.length > 0 && (

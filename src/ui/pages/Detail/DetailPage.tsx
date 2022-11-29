@@ -1,5 +1,6 @@
 import withHookProps from "@/ui/hoc/WithHookProps";
 import {
+  Badge,
   Card,
   CardContent,
   CardMedia,
@@ -7,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import useDetailPage from "./useDetailPage";
 
 type DetailProps = ReturnType<typeof useDetailPage>;
@@ -17,16 +18,19 @@ const DetailPage: React.FC<DetailProps> = ({
   getProduct,
 }: DetailProps) => {
   const params = useParams();
+  const dataPro = useLocation();
   const { idProduct } = params;
+  const initialInfo = dataPro.state.product;
 
   const Error = () => <div>Error...</div>;
-  const Empty = () => <div>There are no products</div>;
 
   const data = product.data;
 
   useEffect(() => {
     if (idProduct) getProduct(idProduct);
   }, [idProduct]);
+
+  console.log("initialInfo", initialInfo);
 
   return (
     <>
@@ -57,6 +61,25 @@ const DetailPage: React.FC<DetailProps> = ({
                   color="text.secondary"
                 >
                   {data.price} | {data.thumbnail ?? "vacio"}
+                  {initialInfo && (
+                    <>
+                      <p>quantity: {initialInfo.available_quantity}</p>
+                      <p>tags</p>
+                      {initialInfo.tags.map((tag: string, index: number) => (
+                        <div>
+                          <Badge
+                            badgeContent={tag}
+                            key={index}
+                            color="primary"
+                            anchorOrigin={{
+                              vertical: "top",
+                              horizontal: "right",
+                            }}
+                          ></Badge>
+                        </div>
+                      ))}
+                    </>
+                  )}
                 </Typography>
               </CardContent>
             </Card>

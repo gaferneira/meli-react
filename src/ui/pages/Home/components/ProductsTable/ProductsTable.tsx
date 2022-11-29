@@ -43,7 +43,12 @@ const ProductsTable: React.FC<ProductsTableInterface> = ({
       flex: 1,
       renderCell: (params: GridRenderCellParams) => (
         <>
-          <Link to={`/detail/${params.value}`}>Detalle</Link>
+          <Link
+            to={`/detail/${params.value}`}
+            state={{ product: params.row }}
+          >
+            Detalle
+          </Link>
         </>
       ),
     },

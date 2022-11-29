@@ -1,5 +1,6 @@
-import { Product } from "@/domain/entities";
+import { Product } from "@/domain";
 import axios from "axios";
+import { getCancelToken } from "./Utils";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -19,9 +20,12 @@ interface ApiResponseProduct {
 export async function searchProducts(query: string): Promise<Array<Product>> {
   const endpoint = `/sites/MLC/search?q=${query}`;
   try {
-    const response = await axiosInstance.get<ApiResponse>(endpoint);
+    const response = await axiosInstance.get<ApiResponse>(endpoint, {
+      signal: getCancelToken("search"),
+    });
     return response.data.results;
   } catch (err) {
+    if (err instanceof Error && err.message === "canceled") return [];
     throw err;
   }
 }
