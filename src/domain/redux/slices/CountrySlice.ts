@@ -1,14 +1,13 @@
 import { getLocalStorage, setLocalStorage } from "@/data/utils";
-import { LocalStorageTypes, Product } from "@/domain/entities";
-import { Country } from "@/domain/entities/Country";
+import { LocalStorageTypes, Country } from "@/domain";
 import { createSlice } from "@reduxjs/toolkit";
 
 const getCountry = () => {
-    const code = getLocalStorage(LocalStorageTypes.COUNTRY)
-    return Country.findByCode(code ?? "")
-}
+  const code = getLocalStorage(LocalStorageTypes.COUNTRY);
+  return Country.findByCode(code ?? "");
+};
 
-const initialState = getCountry()
+const initialState = getCountry();
 
 export const countrySlice = createSlice({
   name: "country",
