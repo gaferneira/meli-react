@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ProductsState, useAppSelector } from "@/domain";
+import { ProductsState, selectCountry, useAppDispatch, useAppSelector } from "@/domain";
 import { match, getProductsUseCase } from "@/core";
 
 const useHomePage = () => {
@@ -9,7 +9,9 @@ const useHomePage = () => {
     failure: null,
   });
 
+  const dispatch = useAppDispatch();
   const favorites = useAppSelector((state) => state.favorites);
+  const country = useAppSelector((state) => state.country);
 
   const searchProduct = async (query: string) => {
     setProductState({ data: null, loading: "pending", failure: null });
@@ -27,10 +29,16 @@ const useHomePage = () => {
     setProductState({ data, loading: "idle", failure });
   };
 
+	const onSelectCountry = (code: string) => {
+		dispatch(selectCountry(code))
+	}
+
   return {
+    country,
     productState,
     favorites,
     searchProduct,
+    onSelectCountry
   };
 };
 

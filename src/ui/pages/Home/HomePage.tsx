@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
 import { CircularProgress } from "@mui/material";
 import { WithHookProps, ProductsTable } from "@/ui";
-import useHomePage from "./UseHomePage";
+import useHomePage from "./useHomePage";
+import { SelectCountry } from "./components/SelectCountry";
 
 type HomePageProps = ReturnType<typeof useHomePage>;
 
 const HomePage: React.FC<HomePageProps> = ({
+  country,
   productState,
   favorites,
   searchProduct,
+  onSelectCountry
 }: HomePageProps) => {
   const Error = () => <div>Error...</div>;
   const Empty = () => <div>There are no products</div>;
@@ -19,6 +22,10 @@ const HomePage: React.FC<HomePageProps> = ({
     searchProduct("iphone");
   }, []);
 
+  if (country.code === "") {
+    return <SelectCountry onSelectCountry={onSelectCountry} />
+  }
+  
   return (
     <>
       {productState.loading === "pending" && <CircularProgress />}

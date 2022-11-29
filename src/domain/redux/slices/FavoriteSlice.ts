@@ -4,7 +4,7 @@ import { LocalStorageTypes } from "@/domain/entities/localstorage";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: Product[] = getLocalStorage(LocalStorageTypes.FAVORITE)
-  ? JSON.parse(getLocalStorage(LocalStorageTypes.FAVORITE) as string)
+  ? getLocalStorage(LocalStorageTypes.FAVORITE)
   : [];
 
 export const favoriteSlice = createSlice({
