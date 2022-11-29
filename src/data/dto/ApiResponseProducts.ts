@@ -1,5 +1,5 @@
-import { Product } from "@/domain";
+import { ProductDto } from ".";
 
 export default interface ApiResponseProducts {
-  results: Product[];
+  results: ProductDto[];
 }

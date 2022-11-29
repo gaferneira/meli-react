@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { ProductsState, selectCountry, useAppDispatch, useAppSelector } from "@/domain";
+import {
+  ProductsState,
+  selectCountry,
+  useAppDispatch,
+  useAppSelector,
+} from "@/domain";
 import { match, getProductsUseCase } from "@/core";
 
 const useHomePage = () => {
@@ -18,7 +23,7 @@ const useHomePage = () => {
     let data = null;
     let failure = null;
     match(
-      await getProductsUseCase.invoke(query),
+      await getProductsUseCase.invoke(country.id, query),
       (_failure) => {
         failure = _failure;
       },
@@ -29,16 +34,16 @@ const useHomePage = () => {
     setProductState({ data, loading: "idle", failure });
   };
 
-	const onSelectCountry = (code: string) => {
-		dispatch(selectCountry(code))
-	}
+  const onSelectCountry = (code: string) => {
+    dispatch(selectCountry(code));
+  };
 
   return {
     country,
     productState,
     favorites,
     searchProduct,
-    onSelectCountry
+    onSelectCountry,
   };
 };
 

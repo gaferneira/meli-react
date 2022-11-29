@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { CircularProgress } from "@mui/material";
-import { WithHookProps, ProductsTable } from "@/ui";
+import { WithHookProps, ProductsTable, SelectCountry } from "@/ui";
 import useHomePage from "./useHomePage";
-import { SelectCountry } from "./components/SelectCountry";
 
 type HomePageProps = ReturnType<typeof useHomePage>;
 
@@ -11,7 +10,7 @@ const HomePage: React.FC<HomePageProps> = ({
   productState,
   favorites,
   searchProduct,
-  onSelectCountry
+  onSelectCountry,
 }: HomePageProps) => {
   const Error = () => <div>Error...</div>;
   const Empty = () => <div>There are no products</div>;
@@ -23,18 +22,15 @@ const HomePage: React.FC<HomePageProps> = ({
   }, []);
 
   if (country.code === "") {
-    return <SelectCountry onSelectCountry={onSelectCountry} />
+    return <SelectCountry onSelectCountry={onSelectCountry} />;
   }
-  
+
   return (
     <>
       {productState.loading === "pending" && <CircularProgress />}
       {productState.failure && <Error />}
       {data && data.length > 0 && (
-        <ProductsTable
-          products={data}
-          favorites={favorites}
-        />
+        <ProductsTable products={data} favorites={favorites} />
       )}
       {productState.loading !== "pending" && data?.length === 0 && <Empty />}
     </>

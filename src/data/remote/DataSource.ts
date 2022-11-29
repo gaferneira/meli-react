@@ -9,8 +9,11 @@ const axiosInstance = axios.create({
   },
 });
 
-export async function searchProducts(query: string): Promise<Array<Product>> {
-  const endpoint = "search?q="+query;
+export async function searchProducts(
+  country: string,
+  query: string
+): Promise<Array<Product>> {
+  const endpoint = country + "/search?q=" + query;
   try {
     const response = await axiosInstance.get<ApiResponseProducts>(endpoint);
     return response.data.results;
