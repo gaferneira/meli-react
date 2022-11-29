@@ -1,3 +1,3 @@
-//export * from "./DetailProduct";
+export * from "./Detail";
 export * from "./Favorites";
 export * from "./Home";

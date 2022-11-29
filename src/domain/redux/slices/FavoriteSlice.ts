@@ -1,7 +1,6 @@
-import { getLocalStorage, setLocalStorage } from "@/data/utils";
-import { Product } from "@/domain/entities";
-import { LocalStorageTypes } from "@/domain/entities/localstorage";
 import { createSlice } from "@reduxjs/toolkit";
+import { getLocalStorage, setLocalStorage } from "@/data/utils";
+import { Product, LocalStorageTypes } from "@/domain";
 
 const initialState: Product[] = getLocalStorage(LocalStorageTypes.FAVORITE)
   ? getLocalStorage(LocalStorageTypes.FAVORITE)
