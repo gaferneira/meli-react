@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { CircularProgress } from "@mui/material";
 import { WithHookProps, ProductsTable } from "@/ui";
-import useHomePage from "./UseHomePage";
+import useHomePage from "./useHomePage";
 
 type HomePageProps = ReturnType<typeof useHomePage>;
 

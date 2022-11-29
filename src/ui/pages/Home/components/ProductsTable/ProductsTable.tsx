@@ -3,6 +3,7 @@ import { Checkbox } from "@mui/material";
 import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
 import { Product } from "@/domain";
 import useProductTable from "./UseProductsTable";
+import { Link } from "react-router-dom";
 
 export interface ProductsTableInterface {
   products: Product[];
@@ -33,6 +34,16 @@ const ProductsTable: React.FC<ProductsTableInterface> = ({
               handleFavoriteChange(params.row);
             }}
           />
+        </>
+      ),
+    },
+    {
+      field: "id",
+      headerName: "Link",
+      flex: 1,
+      renderCell: (params: GridRenderCellParams) => (
+        <>
+          <Link to={`/detail/${params.value}`}>Detalle</Link>
         </>
       ),
     },
