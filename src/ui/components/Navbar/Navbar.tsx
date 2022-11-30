@@ -1,6 +1,6 @@
 import { AppBar, Box, Button, Toolbar } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { pages } from "@/domain/entities";
+import { pages } from "@/ui";
 import styled from "styled-components";
 import CustomLink from "./CustomLink";
 
@@ -21,10 +21,7 @@ const Navbar: React.FC = () => {
       <Toolbar>
         <List>
           {pages.map((page) => (
-            <CustomLink
-              key={page.route}
-              to={page.route}
-            >
+            <CustomLink key={page.route} to={page.route}>
               {" "}
               {page.label}
             </CustomLink>

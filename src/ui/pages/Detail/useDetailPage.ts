@@ -1,5 +1,5 @@
 import { Product, RequestState } from "@/domain";
-import { getProductUseCase, match } from "@/core";
+import { match, serviceLocator } from "@/core";
 import { useState } from "react";
 
 export type ProductState = RequestState<Product>;
@@ -7,21 +7,21 @@ export type ProductState = RequestState<Product>;
 const useDetailPage = () => {
   const [product, setProduct] = useState<ProductState>({
     data: null,
-    loading: "idle",
+    loading: false,
     failure: null,
   });
   const getProduct = async (query: string) => {
-    setProduct({ ...product, loading: "pending" });
+    setProduct({ ...product, loading: true });
     let data = null;
     let failure = null;
     match(
-      await getProductUseCase.invoke(query),
+      await serviceLocator.getProductUseCase().invoke(query),
       (_failure) => {
         failure = _failure;
       },
       (_data) => (data = _data)
     );
-    setProduct({ ...product, data, loading: "idle" });
+    setProduct({ ...product, data, loading: false, failure });
   };
 
   return {

@@ -2,7 +2,7 @@ import React from "react";
 import { Checkbox } from "@mui/material";
 import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
 import { Product } from "@/domain";
-import useProductTable from "./UseProductsTable";
+import useProductTable from "./useProductsTable";
 import { Link } from "react-router-dom";
 
 export interface ProductsTableInterface {
@@ -10,7 +10,7 @@ export interface ProductsTableInterface {
   favorites: Product[];
 }
 
-const ProductsTable: React.FC<ProductsTableInterface> = ({
+export const ProductsTable: React.FC<ProductsTableInterface> = ({
   products,
   favorites,
 }: ProductsTableInterface) => {
@@ -43,10 +43,7 @@ const ProductsTable: React.FC<ProductsTableInterface> = ({
       flex: 1,
       renderCell: (params: GridRenderCellParams) => (
         <>
-          <Link
-            to={`/detail/${params.value}`}
-            state={{ product: params.row }}
-          >
+          <Link to={`/detail/${params.value}`} state={{ product: params.row }}>
             Detalle
           </Link>
         </>

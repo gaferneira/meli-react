@@ -5,12 +5,12 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "@/domain";
-import { match, getProductsUseCase } from "@/core";
+import { match, serviceLocator } from "@/core";
 
 const useHomePage = () => {
   const [productState, setProductState] = useState<ProductsState>({
     data: [],
-    loading: "idle",
+    loading: false,
     failure: null,
   });
 
@@ -19,11 +19,11 @@ const useHomePage = () => {
   const country = useAppSelector((state) => state.country);
 
   const searchProduct = async (query: string) => {
-    setProductState({ data: null, loading: "pending", failure: null });
+    setProductState({ data: null, loading: true, failure: null });
     let data = null;
     let failure = null;
     match(
-      await getProductsUseCase.invoke(country.id, query),
+      await serviceLocator.getProductsUseCase().invoke(country.id, query),
       (_failure) => {
         failure = _failure;
       },
@@ -31,7 +31,7 @@ const useHomePage = () => {
         data = _data;
       }
     );
-    setProductState({ data, loading: "idle", failure });
+    setProductState({ data, loading: false, failure });
   };
 
   const onSelectCountry = (code: string) => {

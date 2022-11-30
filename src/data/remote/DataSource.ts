@@ -1,8 +1,7 @@
 import axios from "axios";
 import { Product } from "@/domain";
 import { getCancelToken } from "./Utils";
-import ApiResponseProducts from "../dto/ApiResponseProducts";
-import ApiResponseProduct from "../dto/ApiResponseProduct";
+import { ApiResponseProducts, ApiResponseProduct } from "../dto";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -15,8 +14,7 @@ export async function searchProducts(
   country: string,
   query: string
 ): Promise<Array<Product>> {
-  //const endpoint = `/sites/MLC/${country}/search?q=${query}`;
-  const endpoint = `/sites/MLC/search?q=${query}`;
+  const endpoint = `/sites/${country}/search?q=${query}`;
   try {
     const response = await axiosInstance.get<ApiResponseProducts>(endpoint, {
       signal: getCancelToken("searchProduct"),

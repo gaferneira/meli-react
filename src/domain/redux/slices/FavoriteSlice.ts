@@ -1,26 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getLocalStorage, setLocalStorage } from "@/data/utils";
-import { Product, LocalStorageTypes } from "@/domain";
+import { Product } from "@/domain";
+import { serviceLocator } from "@/core";
 
-const initialState: Product[] = getLocalStorage(LocalStorageTypes.FAVORITE)
-  ? getLocalStorage(LocalStorageTypes.FAVORITE)
-  : [];
+const repository = serviceLocator.favoriteRepository();
+
+const initialState: Product[] = repository.getFavorites();
 
 export const favoriteSlice = createSlice({
-  name: LocalStorageTypes.FAVORITE,
+  name: "favorites",
   initialState,
   reducers: {
     addFavorite: (state, action) => {
-      const favorites = [...state, action.payload];
-      setLocalStorage(LocalStorageTypes.FAVORITE, favorites);
-      return favorites;
+      return repository.addFavorite(action.payload);
     },
     removeFavorite: (state, action) => {
-      const filteredState = state.filter(
-        (p: Product) => p.id !== action.payload.id
-      );
-      setLocalStorage(LocalStorageTypes.FAVORITE, filteredState);
-      return filteredState;
+      return repository.removeFavorite(action.payload);
     },
   },
 });
