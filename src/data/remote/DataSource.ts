@@ -1,7 +1,12 @@
 import axios from "axios";
 import { Product } from "@/domain";
 import { getCancelToken } from "./Utils";
-import { ApiResponseProducts, ApiResponseProduct } from "../dto";
+import {
+  ApiResponseProducts,
+  ApiResponseProduct,
+  ProductDtoToEntity,
+  ProductDto,
+} from "../dto";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -15,28 +20,18 @@ export async function searchProducts(
   query: string
 ): Promise<Array<Product>> {
   const endpoint = `/sites/${country}/search?q=${query}`;
-  try {
-    const response = await axiosInstance.get<ApiResponseProducts>(endpoint, {
-      signal: getCancelToken("searchProduct"),
-    });
-    return response.data.results;
-  } catch (err) {
-    if (err instanceof Error && err.message === "canceled") return [];
-    throw err;
-  }
+  const response = await axiosInstance.get<ApiResponseProducts>(endpoint, {
+    signal: getCancelToken("searchProduct"),
+  });
+  const array: ProductDto[] = response.data.results;
+  return array.map((p) => ProductDtoToEntity(p));
 }
 
 export async function getProduct(id: string): Promise<Product> {
   const endpoint = `/items/${id}`;
   try {
     const request = await axiosInstance.get<ApiResponseProduct>(endpoint);
-    const response: any = request.data;
-    return {
-      id: response.id,
-      title: response.title,
-      price: response.price,
-      thumbnail: response.thumbnail,
-    };
+    return ProductDtoToEntity(request.data);
   } catch (err) {
     throw err;
   }

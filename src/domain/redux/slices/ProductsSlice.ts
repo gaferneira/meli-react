@@ -6,12 +6,12 @@ export type ProductsState = RequestState<Product[]>;
 
 const initialState: ProductsState = {
   data: [] as Product[],
-  loading: "idle",
+  loading: false,
   failure: null,
 };
 
 export const fetchProducts = createAsyncThunk("products/fetch", async () => {
-  return await searchProducts("iphone");
+  return await searchProducts("MLC", "iphone");
 });
 
 export const productsSlice = createSlice({
@@ -21,22 +21,22 @@ export const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
-        if (state.loading === "idle") {
-          state.loading = "pending";
+        if (state.loading === false) {
+          state.loading = true;
         }
       })
       .addCase(
         fetchProducts.fulfilled,
         (state, action: PayloadAction<Product[]>) => {
-          if (state.loading === "pending") {
-            state.loading = "idle";
+          if (state.loading === true) {
+            state.loading = false;
           }
           state.data = action.payload;
         }
       )
       .addCase(fetchProducts.rejected, (state, action) => {
-        if (state.loading === "pending") {
-          state.loading = "idle";
+        if (state.loading === true) {
+          state.loading = false;
           state.failure = action.error
             ? {
                 message: action.error.message || "",
