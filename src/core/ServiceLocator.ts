@@ -2,6 +2,7 @@ import {
   ProductRepositoryImpl,
   CountryRepositoryImpl,
   FavoriteRepositoryImpl,
+  SearchRepositoryImpl,
 } from "@/data";
 import {
   GetProductUseCase,
@@ -9,6 +10,7 @@ import {
   ProductRepository,
   FavoriteRepository,
   CountryRepository,
+  SearchRepository,
 } from "@/domain";
 
 export interface ServiceLocatorInterface {
@@ -16,6 +18,7 @@ export interface ServiceLocatorInterface {
   countryRepository: () => CountryRepository;
   favoriteRepository: () => FavoriteRepository;
   productRepository: () => ProductRepository;
+  searchRepository: () => SearchRepository;
   //use cases
   getProductUseCase: () => GetProductUseCase;
   getProductsUseCase: () => GetProductsUseCase;
@@ -26,6 +29,7 @@ let getProductsUseCase: GetProductsUseCase;
 let countryRepository: CountryRepository;
 let favoriteRepository: FavoriteRepository;
 let productRepository: ProductRepository;
+let searchRepository: SearchRepository;
 
 export const serviceLocator: ServiceLocatorInterface = {
   countryRepository: function (): CountryRepository {
@@ -36,6 +40,9 @@ export const serviceLocator: ServiceLocatorInterface = {
   },
   productRepository: function (): ProductRepository {
     return productRepository || (productRepository = ProductRepositoryImpl);
+  },
+  searchRepository: function (): SearchRepository {
+    return searchRepository || (searchRepository = SearchRepositoryImpl);
   },
 
   getProductUseCase: function (): GetProductUseCase {

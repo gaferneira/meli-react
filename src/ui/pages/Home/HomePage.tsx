@@ -9,6 +9,7 @@ const HomePage: React.FC<HomePageProps> = ({
   country,
   productState,
   favorites,
+  searchStr,
   searchProduct,
   onSelectCountry,
 }: HomePageProps) => {
@@ -27,11 +28,15 @@ const HomePage: React.FC<HomePageProps> = ({
         onChange={searchProduct}
         placeholder="Search a product"
         limit={2}
+        string={searchStr}
       />
       {productState.loading && <CircularProgress />}
       {productState.failure && <Error />}
       {data && data.length > 0 && (
-        <ProductsTable products={data} favorites={favorites} />
+        <ProductsTable
+          products={data}
+          favorites={favorites}
+        />
       )}
       {!productState.loading && data?.length === 0 && <Empty />}
     </>

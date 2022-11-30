@@ -5,11 +5,13 @@ import {
   favoriteSlice,
   countrySlice,
   ProductsState,
+  searchSlice,
 } from "./slices";
 export interface AppStore {
   products: ProductsState;
   favorites: Product[];
   country: Country;
+  search: string;
 }
 
 const store = configureStore<AppStore>({
@@ -17,6 +19,7 @@ const store = configureStore<AppStore>({
     products: productsSlice.reducer,
     favorites: favoriteSlice.reducer,
     country: countrySlice.reducer,
+    search: searchSlice.reducer,
   },
 });
 
