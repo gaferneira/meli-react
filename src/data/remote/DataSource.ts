@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Product } from "@/domain";
-import { getCancelToken } from "./Utils";
+import { getCancelToken } from "../utils";
 import {
   ApiResponseProducts,
   ApiResponseProduct,

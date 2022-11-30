@@ -1,7 +1,7 @@
-import { FormContainer } from "@/ui";
 import React, { useEffect, useRef, useState } from "react";
 import debounce from "lodash.debounce";
 import { addSearch, useAppDispatch } from "@/domain";
+import { FormContainer } from "@/ui";
 
 interface Props {
   placeholder: string;
@@ -20,8 +20,10 @@ const Search: React.FC<Props> = ({
   const [searchStr, setSearchStr] = useState<string>("");
   const debouncedSearch = useRef(
     debounce((value) => {
-      if (value && value.length > limit) onChange(value);
-      dispatch(addSearch(value));
+      if (value && value.length > limit) {
+        onChange(value);
+        dispatch(addSearch(value));
+      }
     }, 1000)
   ).current;
 
