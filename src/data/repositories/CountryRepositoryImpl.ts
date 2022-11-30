@@ -1,14 +1,14 @@
-import { Country, CountryRepository } from "@/domain";
+import { Country, CountryRepository, findCountryByCode } from "@/domain";
 import { StorageTypes } from "../dto";
 import { getLocalStorage, setLocalStorage } from "../utils";
 
 export const CountryRepositoryImpl: CountryRepository = {
   getCurrentCountry: function (): Country {
     const code = getLocalStorage(StorageTypes.COUNTRY);
-    return Country.findByCode(code ?? "");
+    return findCountryByCode(code ?? "");
   },
   updateCurrentCountry: function (countryCode: string) {
     setLocalStorage(StorageTypes.COUNTRY, countryCode);
-    return Country.findByCode(countryCode);
+    return findCountryByCode(countryCode);
   },
 };

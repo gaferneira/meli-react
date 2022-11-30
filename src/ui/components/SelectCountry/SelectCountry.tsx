@@ -1,4 +1,4 @@
-import { selectCountry, useAppDispatch, Country } from "@/domain";
+import { countryValues } from "@/domain";
 import { Button } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
@@ -13,8 +13,8 @@ const SelectCountry: React.FC<SelectCountryInterface> = ({
   return (
     <SelectCountryStyle>
       <ul>
-        {Country.values.map((country) => (
-          <li>
+        {countryValues.map((country) => (
+          <li key={country.code}>
             <Button
               children={country.name}
               onClick={() => onSelectCountry(country.code)}

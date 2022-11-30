@@ -1,5 +1,5 @@
-import { Either, Left, Right } from "@/core/Either";
-import { Failure, Product } from "../entities";
+import { Either, Left, Right } from "../utils/Either";
+import { analyzeException, Failure, Product } from "../entities";
 import { ProductRepository } from "../repositories";
 
 export class GetProductsUseCase {
@@ -16,7 +16,7 @@ export class GetProductsUseCase {
       const data = await this.repository.getProducts(country, query);
       return Right(data);
     } catch (exception) {
-      const failure = { message: "exception", code: "500" };
+      const failure = analyzeException(exception);
       return Left(failure);
     }
   }

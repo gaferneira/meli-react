@@ -1,5 +1,5 @@
-import { Product, RequestState } from "@/domain";
-import { match, serviceLocator } from "@/core";
+import { Product, RequestState, match } from "@/domain";
+import { serviceLocator } from "@/core";
 import { useState } from "react";
 
 export type ProductState = RequestState<Product>;
