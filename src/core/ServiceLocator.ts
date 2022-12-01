@@ -31,7 +31,7 @@ let favoriteRepository: FavoriteRepository;
 let productRepository: ProductRepository;
 let searchRepository: SearchRepository;
 
-export const serviceLocator: ServiceLocatorInterface = {
+const serviceLocatorImpl: ServiceLocatorInterface = {
   countryRepository: function (): CountryRepository {
     return countryRepository || (countryRepository = CountryRepositoryImpl);
   },
@@ -58,4 +58,13 @@ export const serviceLocator: ServiceLocatorInterface = {
       (getProductsUseCase = new GetProductsUseCase(this.productRepository()))
     );
   },
+};
+
+let serviceLocator: ServiceLocatorInterface;
+export const initServiceLocator = (locator: ServiceLocatorInterface) => {
+  serviceLocator = locator;
+};
+
+export const getServiceLocator = () => {
+  return serviceLocator || serviceLocatorImpl;
 };

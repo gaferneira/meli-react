@@ -1,10 +1,9 @@
-import { Product, RequestState, match } from "@/domain";
-import { serviceLocator } from "@/core";
+import { GetProductUseCase, match, Product, RequestState } from "@/domain";
 import { useState } from "react";
 
 export type ProductState = RequestState<Product>;
 
-const useDetailPage = () => {
+const useDetailPage = (getProductUseCase: GetProductUseCase) => () => {
   const [product, setProduct] = useState<ProductState>({
     data: null,
     loading: false,
@@ -15,7 +14,7 @@ const useDetailPage = () => {
     let data = null;
     let failure = null;
     match(
-      await serviceLocator.getProductUseCase().invoke(query),
+      await getProductUseCase.invoke(query),
       (_failure) => {
         failure = _failure;
       },

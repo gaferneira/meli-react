@@ -1,7 +1,7 @@
-import { serviceLocator } from "@/core";
+import { getServiceLocator } from "@/core";
 import { createSlice } from "@reduxjs/toolkit";
 
-const repository = serviceLocator.countryRepository();
+const repository = getServiceLocator().countryRepository();
 
 const initialState = repository.getCurrentCountry();
 

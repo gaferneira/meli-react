@@ -43,10 +43,7 @@ export const ProductsTable: React.FC<ProductsTableInterface> = ({
       flex: 1,
       renderCell: (params: GridRenderCellParams) => (
         <>
-          <Link
-            to={`/detail/${params.value}`}
-            state={{ product: params.row }}
-          >
+          <Link to={`/detail/${params.value}`} state={{ product: params.row }}>
             Detalle
           </Link>
         </>
@@ -65,7 +62,6 @@ export const ProductsTable: React.FC<ProductsTableInterface> = ({
       renderCell: (params: GridRenderCellParams) => <>{params.value} </>,
     },
   ];
-  console.log("render");
   return (
     <div>
       <DataGrid
