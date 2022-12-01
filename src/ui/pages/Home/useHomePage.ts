@@ -19,9 +19,11 @@ const useHomePage = () => {
   const dispatch = useAppDispatch();
   const favorites = useAppSelector((state) => state.favorites);
   const country = useAppSelector((state) => state.country);
+  const searchStr = useAppSelector((state) => state.search);
 
   const searchProduct = async (query: string) => {
     setProductState({ data: null, loading: true, failure: null });
+
     let data = null;
     let failure = null;
     match(
@@ -46,6 +48,7 @@ const useHomePage = () => {
     country,
     productState,
     favorites,
+    searchStr,
     searchProduct,
     onSelectCountry,
   };

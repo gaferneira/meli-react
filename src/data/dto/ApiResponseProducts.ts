@@ -1,5 +1,5 @@
 import { ProductDto } from ".";
 
-export default interface ApiResponseProducts {
+export interface ApiResponseProducts {
   results: ProductDto[];
 }
