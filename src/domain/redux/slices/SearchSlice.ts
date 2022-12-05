@@ -1,7 +1,7 @@
-import { serviceLocator } from "@/core";
+import { getServiceLocator } from "@/core";
 import { createSlice } from "@reduxjs/toolkit";
 
-const repository = serviceLocator.searchRepository();
+const repository = getServiceLocator().searchRepository();
 
 const initialState: string = repository.getLastSearch();
 

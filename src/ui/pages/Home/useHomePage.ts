@@ -6,10 +6,10 @@ import {
   useAppDispatch,
   useAppSelector,
   match,
+  GetProductsUseCase,
 } from "@/domain";
-import { serviceLocator } from "@/core";
 
-const useHomePage = () => {
+const useHomePage = (getProducts: GetProductsUseCase) => () => {
   const [productState, setProductState] = useState<ProductsState>({
     data: [],
     loading: false,
@@ -27,7 +27,7 @@ const useHomePage = () => {
     let data = null;
     let failure = null;
     match(
-      await serviceLocator.getProductsUseCase().invoke(country.id, query),
+      await getProducts.invoke(country.id, query),
       (_failure) => {
         if (_failure.code != FAILURE.CanceledError) {
           failure = _failure;

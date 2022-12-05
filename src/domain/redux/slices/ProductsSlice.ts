@@ -1,5 +1,5 @@
 import { searchProducts } from "@/data";
-import { Product, RequestState } from "@/domain/entities";
+import { analyzeException, Product, RequestState } from "@/domain";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type ProductsState = RequestState<Product[]>;
@@ -37,12 +37,7 @@ export const productsSlice = createSlice({
       .addCase(fetchProducts.rejected, (state, action) => {
         if (state.loading === true) {
           state.loading = false;
-          state.failure = action.error
-            ? {
-                message: action.error.message || "",
-                code: action.error.code || "",
-              }
-            : null;
+          state.failure = analyzeException(action.error);
         }
       });
   },

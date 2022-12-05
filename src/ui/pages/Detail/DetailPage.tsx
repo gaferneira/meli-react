@@ -10,8 +10,10 @@ import {
 } from "@mui/material";
 import withHookProps from "@/ui/hoc/WithHookProps";
 import useDetailPage from "./useDetailPage";
+import { getServiceLocator } from "@/core";
 
-type DetailProps = ReturnType<typeof useDetailPage>;
+const hookPage = useDetailPage(getServiceLocator().getProductUseCase());
+type DetailProps = ReturnType<typeof hookPage>;
 
 const DetailPage: React.FC<DetailProps> = ({
   product,
@@ -32,7 +34,7 @@ const DetailPage: React.FC<DetailProps> = ({
 
   return (
     <>
-      {product.loading === "pending" && <CircularProgress />}
+      {product.loading === true && <CircularProgress />}
       {product.failure && <Error />}
       <div>
         <h2>Product</h2>
@@ -47,17 +49,10 @@ const DetailPage: React.FC<DetailProps> = ({
                 alt={data.title}
               />
               <CardContent>
-                <Typography
-                  gutterBottom
-                  variant="h5"
-                  component="div"
-                >
+                <Typography gutterBottom variant="h5" component="div">
                   {data.title}
                 </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                >
+                <Typography variant="body2" color="text.secondary">
                   {data.price} | {data.thumbnail ?? "vacio"}
                 </Typography>
                 {initialInfo && (
@@ -86,4 +81,4 @@ const DetailPage: React.FC<DetailProps> = ({
     </>
   );
 };
-export default withHookProps(useDetailPage, DetailPage);
+export default withHookProps(hookPage, DetailPage);

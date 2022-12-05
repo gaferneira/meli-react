@@ -2,7 +2,8 @@ import { ProductsTable, WithHookProps } from "@/ui";
 import React from "react";
 import useFavoritesPage from "./useFavoritesPage";
 
-type FavoritesPageProps = ReturnType<typeof useFavoritesPage>;
+const hookPage = useFavoritesPage();
+type FavoritesPageProps = ReturnType<typeof hookPage>;
 
 const FavoritesPage: React.FC<FavoritesPageProps> = ({
   favorites,
@@ -19,4 +20,4 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({
   );
 };
 
-export default WithHookProps(useFavoritesPage, FavoritesPage);
+export default WithHookProps(hookPage, FavoritesPage);

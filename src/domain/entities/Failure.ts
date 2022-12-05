@@ -1,5 +1,3 @@
-import { CanceledError } from "axios";
-
 export interface Failure {
   message: string;
   code: FAILURE;

@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Product } from "@/domain";
-import { serviceLocator } from "@/core";
+import { getServiceLocator } from "@/core";
 
-const repository = serviceLocator.favoriteRepository();
+const repository = getServiceLocator().favoriteRepository();
 
 const initialState: Product[] = repository.getFavorites();
 
