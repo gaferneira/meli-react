@@ -5,7 +5,7 @@ import useHomePage from "./useHomePage";
 import { getServiceLocator } from "@/core";
 import { ErrorMessage } from "@/ui";
 import { Empty } from "./components";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 const hookPage = useHomePage(getServiceLocator().getProductsUseCase());
 type HomePageProps = ReturnType<typeof hookPage>;
@@ -19,6 +19,8 @@ const HomePage: React.FC<HomePageProps> = ({
   onSelectCountry,
 }: HomePageProps) => {
   const data = productState.data;
+
+  const { t } = useTranslation();
 
   if (country.code === "") {
     return <SelectCountry onSelectCountry={onSelectCountry} />;

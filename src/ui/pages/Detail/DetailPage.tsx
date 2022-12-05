@@ -12,7 +12,7 @@ import withHookProps from "@/ui/hoc/WithHookProps";
 import useDetailPage from "./useDetailPage";
 import { getServiceLocator } from "@/core";
 import { ErrorMessage } from "@/ui";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 const hookPage = useDetailPage(getServiceLocator().getProductUseCase());
 type DetailProps = ReturnType<typeof hookPage>;
@@ -27,6 +27,8 @@ const DetailPage: React.FC<DetailProps> = ({
   const initialInfo = dataPro.state.product;
 
   const data = product.data;
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (idProduct) getProduct(idProduct);
