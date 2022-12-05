@@ -1,3 +1,4 @@
+export * from "./ErrorMessage";
 export * from "./Navbar";
 export * from "./ProductsTable";
 export * from "./RouteWithNotfound";

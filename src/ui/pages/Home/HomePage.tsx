@@ -3,6 +3,9 @@ import { CircularProgress } from "@mui/material";
 import { WithHookProps, SelectCountry, Search, ProductsTable } from "@/ui";
 import useHomePage from "./useHomePage";
 import { getServiceLocator } from "@/core";
+import { ErrorMessage } from "@/ui";
+import { Empty } from "./components";
+import { t } from "i18next";
 
 const hookPage = useHomePage(getServiceLocator().getProductsUseCase());
 type HomePageProps = ReturnType<typeof hookPage>;
@@ -15,9 +18,6 @@ const HomePage: React.FC<HomePageProps> = ({
   searchProduct,
   onSelectCountry,
 }: HomePageProps) => {
-  const Error = () => <div>Error...</div>;
-  const Empty = () => <div>There are no products</div>;
-
   const data = productState.data;
 
   if (country.code === "") {
@@ -28,12 +28,12 @@ const HomePage: React.FC<HomePageProps> = ({
     <>
       <Search
         onChange={searchProduct}
-        placeholder="Search a product"
+        placeholder={t("Search a product")}
         limit={2}
         string={searchStr}
       />
       {productState.loading && <CircularProgress />}
-      {productState.failure && <Error />}
+      {productState.failure && <ErrorMessage failure={productState.failure} />}
       {data && data.length > 0 && (
         <ProductsTable products={data} favorites={favorites} />
       )}

@@ -11,6 +11,8 @@ import {
 import withHookProps from "@/ui/hoc/WithHookProps";
 import useDetailPage from "./useDetailPage";
 import { getServiceLocator } from "@/core";
+import { ErrorMessage } from "@/ui";
+import { t } from "i18next";
 
 const hookPage = useDetailPage(getServiceLocator().getProductUseCase());
 type DetailProps = ReturnType<typeof hookPage>;
@@ -24,8 +26,6 @@ const DetailPage: React.FC<DetailProps> = ({
   const { idProduct } = params;
   const initialInfo = dataPro.state.product;
 
-  const Error = () => <div>Error...</div>;
-
   const data = product.data;
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const DetailPage: React.FC<DetailProps> = ({
   return (
     <>
       {product.loading === true && <CircularProgress />}
-      {product.failure && <Error />}
+      {product.failure && <ErrorMessage failure={product.failure} />}
       <div>
         <h2>Product</h2>
         <div>
@@ -53,7 +53,7 @@ const DetailPage: React.FC<DetailProps> = ({
                   {data.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {data.price} | {data.thumbnail ?? "vacio"}
+                  {data.price} | {data.thumbnail ?? t("empty")}
                 </Typography>
                 {initialInfo && (
                   <>
