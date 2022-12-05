@@ -6,7 +6,7 @@ import {
   countrySlice,
   ProductsState,
   searchSlice,
-} from "./slices";
+} from "./Slices";
 export interface AppStore {
   products: ProductsState;
   favorites: Product[];
