@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import debounce from "lodash.debounce";
-import { addSearch, useAppDispatch } from "@/domain";
-import { FormContainer } from "@/ui";
+import { addSearch, useAppDispatch, FormContainer } from "@/ui";
 
 interface Props {
   placeholder: string;

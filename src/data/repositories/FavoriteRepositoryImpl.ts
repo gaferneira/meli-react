@@ -1,23 +1,25 @@
-import { FavoriteRepository, Product } from "@/domain";
+import { DataResult, FavoriteRepository, Product, Right } from "@/domain";
 import { StorageTypes } from "../dto";
 import { getLocalStorage, setLocalStorage } from "../utils";
 
+const getAll = function () {
+  return getLocalStorage(StorageTypes.FAVORITE)
+    ? getLocalStorage(StorageTypes.FAVORITE)
+    : [];
+};
+
 export const FavoriteRepositoryImpl: FavoriteRepository = {
-  getFavorites: function (): Product[] {
-    return getLocalStorage(StorageTypes.FAVORITE)
-      ? getLocalStorage(StorageTypes.FAVORITE)
-      : [];
+  getFavorites: function (): DataResult<Product[]> {
+    return Right(getAll());
   },
-  addFavorite: function (product: Product): Product[] {
-    const favorites = [...this.getFavorites(), product];
+  addFavorite: function (product: Product): DataResult<Product[]> {
+    const favorites = [...getAll(), product];
     setLocalStorage(StorageTypes.FAVORITE, favorites);
-    return favorites;
+    return Right(favorites);
   },
-  removeFavorite: function (product: Product): Product[] {
-    const filteredList = this.getFavorites().filter(
-      (p: Product) => p.id !== product.id
-    );
+  removeFavorite: function (product: Product): DataResult<Product[]> {
+    const filteredList = getAll().filter((p: Product) => p.id !== product.id);
     setLocalStorage(StorageTypes.FAVORITE, filteredList);
-    return filteredList;
+    return Right(filteredList);
   },
 };

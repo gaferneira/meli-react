@@ -1,3 +1,4 @@
+import { DataResult, Right } from "@/domain";
 import { SearchRepository } from "@/domain/repositories/SearchRepository";
 import { StorageTypes } from "../dto";
 import {
@@ -7,16 +8,17 @@ import {
 } from "../utils";
 
 export const SearchRepositoryImpl: SearchRepository = {
-  getLastSearch: (): string => {
-    return getSessionStorage(StorageTypes.SEARCH)
+  getLastSearch: (): DataResult<string> => {
+    const result = getSessionStorage(StorageTypes.SEARCH)
       ? getSessionStorage(StorageTypes.SEARCH)
       : "";
+    return Right(result);
   },
-  addLastSearch: (searchStr: string): string => {
+  addLastSearch: (searchStr: string): DataResult<string> => {
     setSessionStorage(StorageTypes.SEARCH, searchStr);
-    return searchStr;
+    return Right(searchStr);
   },
-  cleanSearch: (): void => {
-    removeSessionStorage(StorageTypes.SEARCH);
+  cleanSearch: (): DataResult<void> => {
+    return Right(removeSessionStorage(StorageTypes.SEARCH));
   },
 };

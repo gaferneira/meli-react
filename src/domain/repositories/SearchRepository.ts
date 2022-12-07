@@ -1,5 +1,7 @@
+import { DataResult } from "../entities";
+
 export interface SearchRepository {
-  getLastSearch(): string;
-  addLastSearch(searchStr: string): string;
-  cleanSearch(): void;
+  getLastSearch(): DataResult<string>;
+  addLastSearch(searchStr: string): DataResult<string>;
+  cleanSearch(): DataResult<void>;
 }
