@@ -1,11 +1,11 @@
 {
-    "There are no products": "No hay productos",
-    "There are no favorites": "No hay favoritos",
-    "Search a product": "Buscar un producto",
-    "Link": "Enlace",
-    "Title": "Título",
-    "Price": "Precio",
-    "Details": "Detalles",
-    "Home": "Inicio",
-    "Favorites": "Favoritos"
+  "empty_products": "No hay productos",
+  "empty_favorites": "No hay favoritos",
+  "search_placeholder": "Buscar un producto",
+  "Link": "Enlace",
+  "Title": "Título",
+  "Price": "Precio",
+  "Details": "Detalles",
+  "Home": "Inicio",
+  "Favorites": "Favoritos"
 }
