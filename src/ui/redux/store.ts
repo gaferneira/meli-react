@@ -1,14 +1,7 @@
 import { Product, Country } from "@/domain/entities";
 import { configureStore } from "@reduxjs/toolkit";
-import {
-  productsSlice,
-  favoriteSlice,
-  countrySlice,
-  ProductsState,
-  searchSlice,
-} from "./slices";
+import { favoriteSlice, countrySlice, searchSlice } from "./slices";
 export interface AppStore {
-  products: ProductsState;
   favorites: Product[];
   country: Country;
   search: string;
@@ -16,7 +9,6 @@ export interface AppStore {
 
 const store = configureStore<AppStore>({
   reducer: {
-    products: productsSlice.reducer,
     favorites: favoriteSlice.reducer,
     country: countrySlice.reducer,
     search: searchSlice.reducer,

@@ -1,5 +1,5 @@
-import { Country } from "@/domain";
+import { Country, DataResult } from "@/domain";
 export interface CountryRepository {
-  getCurrentCountry(): Country;
-  updateCurrentCountry(countryCode: string): Country;
+  getCurrentCountry(): DataResult<Country>;
+  updateCurrentCountry(countryCode: string): DataResult<Country>;
 }

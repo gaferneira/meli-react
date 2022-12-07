@@ -1,6 +1,6 @@
-import { Either, Left, Right } from "../utils/Either";
-import { analyzeException, Failure, Product } from "../entities";
-import { ProductRepository } from "../repositories";
+import { Either, Left, Right } from "../../utils/Either";
+import { analyzeException, Failure, Product } from "../../entities";
+import { ProductRepository } from "../../repositories";
 
 export class GetProductsUseCase {
   private repository: ProductRepository;
@@ -13,8 +13,7 @@ export class GetProductsUseCase {
     query: string
   ): Promise<Either<Failure, Product[]>> {
     try {
-      const data = await this.repository.getProducts(country, query);
-      return Right(data);
+      return await this.repository.getProducts(country, query);
     } catch (exception) {
       const failure = analyzeException(exception);
       return Left(failure);

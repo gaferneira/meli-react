@@ -1,6 +1,6 @@
-import { Product } from "@/domain";
+import { DataResult, Product } from "@/domain";
 export interface FavoriteRepository {
-  getFavorites(): Product[];
-  addFavorite(product: Product): Product[];
-  removeFavorite(product: Product): Product[];
+  getFavorites(): DataResult<Product[]>;
+  addFavorite(product: Product): DataResult<Product[]>;
+  removeFavorite(product: Product): DataResult<Product[]>;
 }

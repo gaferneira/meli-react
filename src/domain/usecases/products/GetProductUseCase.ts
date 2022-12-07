@@ -1,6 +1,6 @@
-import { Either, Left, Right } from "../utils/Either";
-import { analyzeException, Failure, Product } from "../entities";
-import { ProductRepository } from "../repositories";
+import { analyzeException, Failure, Product } from "../../entities";
+import { ProductRepository } from "../../repositories";
+import { Either, Left } from "../../utils/Either";
 
 export class GetProductUseCase {
   private repository: ProductRepository;
@@ -10,8 +10,7 @@ export class GetProductUseCase {
 
   async invoke(id: string): Promise<Either<Failure, Product>> {
     try {
-      const data = await this.repository.getProduct(id);
-      return Right(data);
+      return await this.repository.getProduct(id);
     } catch (exception) {
       const failure = analyzeException(exception);
       return Left(failure);

@@ -1,4 +1,5 @@
-import { addFavorite, removeFavorite, useAppDispatch, Product } from "@/domain";
+import { Product } from "@/domain";
+import { addFavorite, removeFavorite, useAppDispatch } from "@/ui";
 import { useState } from "react";
 
 const useProductTable = (favorites: Product[] | undefined) => {

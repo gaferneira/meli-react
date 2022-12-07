@@ -1,13 +1,14 @@
 import { useState } from "react";
 import {
   FAILURE,
-  ProductsState,
-  selectCountry,
-  useAppDispatch,
-  useAppSelector,
   match,
   GetProductsUseCase,
+  Product,
+  RequestState,
 } from "@/domain";
+import { selectCountry, useAppDispatch, useAppSelector } from "@/ui";
+
+export type ProductsState = RequestState<Product[]>;
 
 const useHomePage = (getProducts: GetProductsUseCase) => () => {
   const [productState, setProductState] = useState<ProductsState>({
