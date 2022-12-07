@@ -1,27 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
 import debounce from "lodash.debounce";
-import { addSearch, useAppDispatch, FormContainer } from "@/ui";
+import { FormComponent } from "@/ui";
 
 interface Props {
   placeholder: string;
   onChange: (query: string) => void;
   limit?: number;
   string?: string;
+  storePrevQuery?: (query: string) => void;
 }
 
 const Search: React.FC<Props> = ({
   placeholder,
-  onChange,
   limit = 1,
   string,
+  onChange,
+  storePrevQuery,
 }) => {
-  const dispatch = useAppDispatch();
   const [searchStr, setSearchStr] = useState<string>("");
   const debouncedSearch = useRef(
     debounce((value) => {
       if (value && value.length > limit) {
         onChange(value);
-        dispatch(addSearch(value));
+        if (storePrevQuery) storePrevQuery(value);
       }
     }, 1000)
   ).current;
@@ -32,9 +33,7 @@ const Search: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    return () => {
-      debouncedSearch.cancel();
-    };
+    return () => debouncedSearch.cancel();
   }, [debouncedSearch]);
 
   useEffect(() => {
@@ -46,15 +45,15 @@ const Search: React.FC<Props> = ({
   }, []);
 
   return (
-    <FormContainer>
-      <input
+    <FormComponent>
+      <FormComponent.Input
         name="search"
         type="text"
         placeholder={placeholder}
         onChange={handleChange}
         value={searchStr}
       />
-    </FormContainer>
+    </FormComponent>
   );
 };
 export default Search;

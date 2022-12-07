@@ -6,7 +6,7 @@ import {
   Product,
   RequestState,
 } from "@/domain";
-import { selectCountry, useAppDispatch, useAppSelector } from "@/ui";
+import { addSearch, selectCountry, useAppDispatch, useAppSelector } from "@/ui";
 
 export type ProductsState = RequestState<Product[]>;
 
@@ -21,6 +21,8 @@ const useHomePage = (getProducts: GetProductsUseCase) => () => {
   const favorites = useAppSelector((state) => state.favorites);
   const country = useAppSelector((state) => state.country);
   const searchStr = useAppSelector((state) => state.search);
+
+  const queryStr = (value: string) => dispatch(addSearch(value));
 
   const searchProduct = async (query: string) => {
     setProductState({ data: null, loading: true, failure: null });
@@ -52,6 +54,7 @@ const useHomePage = (getProducts: GetProductsUseCase) => () => {
     searchStr,
     searchProduct,
     onSelectCountry,
+    queryStr,
   };
 };
 

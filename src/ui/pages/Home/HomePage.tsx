@@ -17,6 +17,7 @@ const HomePage: React.FC<HomePageProps> = ({
   searchStr,
   searchProduct,
   onSelectCountry,
+  queryStr,
 }: HomePageProps) => {
   const data = productState.data;
 
@@ -30,14 +31,18 @@ const HomePage: React.FC<HomePageProps> = ({
     <>
       <Search
         onChange={searchProduct}
-        placeholder={t("Search a product")}
+        placeholder={t("search_placeholder")}
         limit={2}
         string={searchStr}
+        storePrevQuery={queryStr}
       />
       {productState.loading && <CircularProgress />}
       {productState.failure && <ErrorMessage failure={productState.failure} />}
       {data && data.length > 0 && (
-        <ProductsTable products={data} favorites={favorites} />
+        <ProductsTable
+          products={data}
+          favorites={favorites}
+        />
       )}
       {!productState.loading && data?.length === 0 && <Empty />}
     </>

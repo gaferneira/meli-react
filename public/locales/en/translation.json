@@ -1,11 +1,11 @@
 {
-    "There are no products": "There are no products",
-    "There are no favorites": "There are no favorites",
-    "Search a product": "Search a product",
-    "Link": "Link",
-    "Title": "Title",
-    "Price": "Price",
-    "Details": "Details",
-    "Home": "Home",
-    "Favorites": "Favorites"
+  "empty_products": "There are no products",
+  "empty_favorites": "There are no favorites",
+  "search_placeholder": "Search a product",
+  "Link": "Link",
+  "Title": "Title",
+  "Price": "Price",
+  "Details": "Details",
+  "Home": "Home",
+  "Favorites": "Favorites"
 }
