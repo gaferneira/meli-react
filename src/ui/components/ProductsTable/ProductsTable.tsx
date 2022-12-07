@@ -4,6 +4,7 @@ import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
 import { Product } from "@/domain";
 import useProductTable from "./useProductsTable";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export interface ProductsTableInterface {
   products: Product[];
@@ -17,6 +18,8 @@ export const ProductsTable: React.FC<ProductsTableInterface> = ({
   const pageSize = 5;
 
   const { isFavorite, handleFavoriteChange } = useProductTable(favorites);
+
+  const { t } = useTranslation();
 
   const columns = [
     {
@@ -39,25 +42,25 @@ export const ProductsTable: React.FC<ProductsTableInterface> = ({
     },
     {
       field: "id",
-      headerName: "Link",
+      headerName: t("Link"),
       flex: 1,
       renderCell: (params: GridRenderCellParams) => (
         <>
           <Link to={`/detail/${params.value}`} state={{ product: params.row }}>
-            Detalle
+            {t("Details")}
           </Link>
         </>
       ),
     },
     {
       field: "title",
-      headerName: "Title",
+      headerName: t("Title"),
       flex: 1,
       renderCell: (params: GridRenderCellParams) => <>{params.value}</>,
     },
     {
       field: "price",
-      headerName: "Price",
+      headerName: t("Price"),
       flex: 1,
       renderCell: (params: GridRenderCellParams) => <>{params.value} </>,
     },
