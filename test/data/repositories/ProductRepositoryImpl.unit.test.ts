@@ -1,7 +1,6 @@
 import assert from "assert";
 import { AxiosInstance, AxiosResponse } from "axios";
 import { anything, instance, mock, verify, when } from "ts-mockito";
-import { describe } from "vitest";
 import { ProductRepositoryImpl } from "./../../../src/data";
 import { isLeft, isRight } from "./../../../src/domain/utils/Either";
 
