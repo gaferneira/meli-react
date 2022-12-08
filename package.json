@@ -31,14 +31,15 @@
     "styled-components": "^5.3.6"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "github:testing-library/jest-dom",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
     "@types/lodash.debounce": "^4.0.7",
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@types/styled-components": "^5.1.26",
     "@vitejs/plugin-react": "^2.2.0",
-    "jsdom": "^20.0.3",
     "ts-mockito": "^2.6.1",
     "typescript": "^4.6.4",
     "vite": "^3.2.3",
