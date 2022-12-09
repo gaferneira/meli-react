@@ -6,15 +6,16 @@ import {
   Right,
 } from "@/domain";
 import { StorageTypes } from "../dto";
-import { getLocalStorage, setLocalStorage } from "../utils";
+import { LocalStorage } from "../local";
 
-export const CountryRepositoryImpl: CountryRepository = {
-  getCurrentCountry: function (): DataResult<Country> {
-    const code = getLocalStorage(StorageTypes.COUNTRY);
+export class CountryRepositoryImpl implements CountryRepository {
+  constructor(private readonly localStorage: LocalStorage) {}
+  getCurrentCountry(): DataResult<Country> {
+    const code = this.localStorage.getItem(StorageTypes.COUNTRY);
     return Right(findCountryByCode(code ?? ""));
-  },
-  updateCurrentCountry: function (countryCode: string) {
-    setLocalStorage(StorageTypes.COUNTRY, countryCode);
+  }
+  updateCurrentCountry(countryCode: string): DataResult<Country> {
+    this.localStorage.setItem(StorageTypes.COUNTRY, countryCode);
     return Right(findCountryByCode(countryCode));
-  },
-};
+  }
+}

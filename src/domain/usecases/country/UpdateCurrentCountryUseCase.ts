@@ -4,7 +4,6 @@ import {
   CountryRepository,
   DataResult,
   Left,
-  Right,
 } from "@/domain";
 
 export class UpdateCurrentCountryUseCase {

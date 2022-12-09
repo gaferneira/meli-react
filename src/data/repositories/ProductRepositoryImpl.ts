@@ -12,11 +12,7 @@ import { getProductEndpoint, getSearchProductsEndpoint } from "../remote";
 import { getCancelToken } from "../utils";
 
 export class ProductRepositoryImpl implements ProductRepository {
-  private axiosInstance: AxiosInstance;
-
-  constructor(axiosInstance: AxiosInstance) {
-    this.axiosInstance = axiosInstance;
-  }
+  constructor(private readonly axiosInstance: AxiosInstance) {}
 
   async getProducts(
     country: string,

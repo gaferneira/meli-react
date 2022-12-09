@@ -10,6 +10,7 @@ import {
   FavoriteRepositoryImpl,
   SearchRepositoryImpl,
   axiosInstance,
+  LocalStorage,
 } from "@/data";
 import {
   GetProductUseCase,
@@ -60,10 +61,20 @@ let searchRepository: SearchRepository;
 
 const serviceLocatorImpl: ServiceLocatorInterface = {
   countryRepository: function (): CountryRepository {
-    return countryRepository || (countryRepository = CountryRepositoryImpl);
+    return (
+      countryRepository ||
+      (countryRepository = new CountryRepositoryImpl(
+        new LocalStorage(localStorage)
+      ))
+    );
   },
   favoriteRepository: function (): FavoriteRepository {
-    return favoriteRepository || (favoriteRepository = FavoriteRepositoryImpl);
+    return (
+      favoriteRepository ||
+      (favoriteRepository = new FavoriteRepositoryImpl(
+        new LocalStorage(localStorage)
+      ))
+    );
   },
   productRepository: function (): ProductRepository {
     return (
@@ -72,7 +83,12 @@ const serviceLocatorImpl: ServiceLocatorInterface = {
     );
   },
   searchRepository: function (): SearchRepository {
-    return searchRepository || (searchRepository = SearchRepositoryImpl);
+    return (
+      searchRepository ||
+      (searchRepository = new SearchRepositoryImpl(
+        new LocalStorage(sessionStorage)
+      ))
+    );
   },
 
   getProductUseCase: function (): GetProductUseCase {
