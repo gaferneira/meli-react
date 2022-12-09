@@ -3,12 +3,9 @@ import React from "react";
 import { Empty } from "./components";
 import useFavoritesPage from "./useFavoritesPage";
 
-const hookPage = useFavoritesPage();
-type FavoritesPageProps = ReturnType<typeof hookPage>;
+type props = ReturnType<typeof useFavoritesPage>;
 
-const FavoritesPage: React.FC<FavoritesPageProps> = ({
-  favorites,
-}: FavoritesPageProps) => {
+const FavoritesPage: React.FC<props> = ({ favorites }: props) => {
   return (
     <>
       {favorites.length > 0 && (
@@ -19,4 +16,4 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({
   );
 };
 
-export default WithHookProps(hookPage, FavoritesPage);
+export default WithHookProps(useFavoritesPage, FavoritesPage);

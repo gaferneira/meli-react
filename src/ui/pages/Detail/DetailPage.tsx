@@ -10,17 +10,12 @@ import {
 } from "@mui/material";
 import withHookProps from "@/ui/hoc/WithHookProps";
 import useDetailPage from "./useDetailPage";
-import { getServiceLocator } from "@/core";
 import { ErrorMessage } from "@/ui";
 import { useTranslation } from "react-i18next";
 
-const hookPage = useDetailPage(getServiceLocator().getProductUseCase());
-type DetailProps = ReturnType<typeof hookPage>;
+type props = ReturnType<typeof useDetailPage>;
 
-const DetailPage: React.FC<DetailProps> = ({
-  product,
-  getProduct,
-}: DetailProps) => {
+const DetailPage: React.FC<props> = ({ product, getProduct }: props) => {
   const params = useParams();
   const dataPro = useLocation();
   const { idProduct } = params;
@@ -83,4 +78,4 @@ const DetailPage: React.FC<DetailProps> = ({
     </>
   );
 };
-export default withHookProps(hookPage, DetailPage);
+export default withHookProps(useDetailPage, DetailPage);
