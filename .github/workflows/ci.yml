@@ -30,27 +30,27 @@ jobs:
         with:
           node-version: "16"
 
-      # pnpm cache
+      # npm cache
       #- uses: actions/cache@v2
       #  with:
-      #    path: ~/.pnpm-store
-      #    key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+      #    path: ~/.npm-store
+      #    key: ${{ runner.os }}-${{ hashFiles('**/npm-lock.yaml') }}
       #    restore-keys: |
       #      ${{ runner.os }}-
       # Install
       - name: INSTALL
-        uses: pnpm/action-setup@v2.0.1
+        uses: npm/action-setup@v2.0.1
         with:
           version: 6.22.2
           run_install: true
 
       # Build
       - name: BUILD
-        run: pnpm build:ci
+        run: npm build:ci
 
       # Test
       - name: TEST
-        run: pnpm test:ci
+        run: npm test:ci
 
       # Upload dist artifacts
       #- uses: actions/upload-artifact@v2
