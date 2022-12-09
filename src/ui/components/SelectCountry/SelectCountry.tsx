@@ -12,7 +12,7 @@ const SelectCountry: React.FC<SelectCountryInterface> = ({
 }: SelectCountryInterface) => {
   return (
     <SelectCountryStyle>
-      <ul>
+      <ul className="select-country">
         {countryValues.map((country) => (
           <li key={country.code}>
             <Button

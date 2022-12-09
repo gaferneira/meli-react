@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
   return (
     <AppBar position="fixed">
       <Toolbar>
-        <List>
+        <List className="nav-bar-list">
           {pages.map((page) => (
             <CustomLink key={page.route} to={page.route}>
               {" "}
