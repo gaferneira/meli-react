@@ -7,10 +7,13 @@ import {
   RequestState,
 } from "@/domain";
 import { addSearch, selectCountry, useAppDispatch, useAppSelector } from "@/ui";
+import { getServiceLocator } from "@/core";
 
 export type ProductsState = RequestState<Product[]>;
 
-const useHomePage = (getProducts: GetProductsUseCase) => () => {
+const useHomePage = (
+  getProducts: GetProductsUseCase = getServiceLocator().getProductsUseCase()
+) => {
   const [productState, setProductState] = useState<ProductsState>({
     data: [],
     loading: false,

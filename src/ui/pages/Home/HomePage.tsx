@@ -2,15 +2,13 @@ import React from "react";
 import { CircularProgress } from "@mui/material";
 import { WithHookProps, SelectCountry, Search, ProductsTable } from "@/ui";
 import useHomePage from "./useHomePage";
-import { getServiceLocator } from "@/core";
 import { ErrorMessage } from "@/ui";
 import { Empty } from "./components";
 import { useTranslation } from "react-i18next";
 
-const hookPage = useHomePage(getServiceLocator().getProductsUseCase());
-type HomePageProps = ReturnType<typeof hookPage>;
+type props = ReturnType<typeof useHomePage>;
 
-const HomePage: React.FC<HomePageProps> = ({
+const HomePage: React.FC<props> = ({
   country,
   productState,
   favorites,
@@ -18,7 +16,7 @@ const HomePage: React.FC<HomePageProps> = ({
   searchProduct,
   onSelectCountry,
   queryStr,
-}: HomePageProps) => {
+}: props) => {
   const data = productState.data;
 
   const { t } = useTranslation();
@@ -46,4 +44,4 @@ const HomePage: React.FC<HomePageProps> = ({
   );
 };
 
-export default WithHookProps(hookPage, HomePage);
+export default WithHookProps(useHomePage, HomePage);

@@ -1,9 +1,12 @@
+import { getServiceLocator } from "@/core";
 import { GetProductUseCase, match, Product, RequestState } from "@/domain";
 import { useState } from "react";
 
 export type ProductState = RequestState<Product>;
 
-const useDetailPage = (getProductUseCase: GetProductUseCase) => () => {
+const useDetailPage = (
+  getProductUseCase: GetProductUseCase = getServiceLocator().getProductUseCase()
+) => {
   const [product, setProduct] = useState<ProductState>({
     data: null,
     loading: false,
