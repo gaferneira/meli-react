@@ -1,6 +1,6 @@
-import { Either, Left, Right } from "../../utils/Either";
 import { analyzeException, Failure, Product } from "../../entities";
 import { ProductRepository } from "../../repositories";
+import { Either, Left } from "../../utils/Either";
 
 export class GetProductsUseCase {
   private repository: ProductRepository;

@@ -22,18 +22,9 @@ function App() {
           <Navbar />
           <div className="container">
             <RoutesWithNotFound>
-              <Route
-                path="/"
-                element={<HomePage />}
-              />
-              <Route
-                path="/favorites"
-                element={<FavoritesPage />}
-              />
-              <Route
-                path="/detail/:idProduct"
-                element={<DetailPage />}
-              />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/favorites" element={<FavoritesPage />} />
+              <Route path="/detail/:idProduct" element={<DetailPage />} />
             </RoutesWithNotFound>
           </div>
         </div>

@@ -15,10 +15,9 @@ const SelectCountry: React.FC<SelectCountryInterface> = ({
       <ul className="select-country">
         {countryValues.map((country) => (
           <li key={country.code}>
-            <Button
-              children={country.name}
-              onClick={() => onSelectCountry(country.code)}
-            />
+            <Button onClick={() => onSelectCountry(country.code)}>
+              {country.name}
+            </Button>
           </li>
         ))}
       </ul>

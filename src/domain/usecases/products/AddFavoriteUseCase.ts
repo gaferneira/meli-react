@@ -4,7 +4,6 @@ import {
   FavoriteRepository,
   Left,
   Product,
-  Right,
 } from "@/domain";
 
 export class AddFavoriteUseCase {
