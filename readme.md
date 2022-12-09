@@ -14,22 +14,40 @@ Esto es un ejemplo de una aplicación en React desarrollada con clean architectu
 - Redux Toolkit
 - Vite
 - MUI
-- Unit tests
+- Unit tests (ts-mockito, vitest, jest, testing-library)
+- Cypress, E2E tests
 - Git actions
+- ESLint
 
 ## - Clean architecture
 
 El proyecto está estructurado en 3 módulos, cada módulo representa una capa de clean architecture
 
-- UI (Components, hocs)
-- Domain (use cases, redux, repositorios, entities...)
-- Data (api rest, localstore...)
+- UI (Components, redux, hocs)
+- Domain (use cases, repositories, entities...)
+- Data (api rest, localstorage...)
 
 ## - Testing:
 
 - Cada capa contiene sus propias pruebas unitarias
 
+```
+npm run test
+```
+
+## - Integration Testing:
+
+Comando para correr Cypress
+
+```
+npx cypress open
+```
+
 ## - Code Quality Checks
+
+```
+npx eslint src/**
+```
 
 ### Desarrollado por
 
