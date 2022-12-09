@@ -39,10 +39,7 @@ const HomePage: React.FC<HomePageProps> = ({
       {productState.loading && <CircularProgress />}
       {productState.failure && <ErrorMessage failure={productState.failure} />}
       {data && data.length > 0 && (
-        <ProductsTable
-          products={data}
-          favorites={favorites}
-        />
+        <ProductsTable products={data} favorites={favorites} />
       )}
       {!productState.loading && data?.length === 0 && <Empty />}
     </>

@@ -21,10 +21,7 @@ function CustomLink(props: Route) {
   const isActive = useMatch({ path: resolvedPath.pathname, end: true });
   return (
     <ListItem>
-      <Link
-        to={props.to}
-        className={`${isActive ? "active" : "inactive"}`}
-      >
+      <Link to={props.to} className={`${isActive ? "active" : "inactive"}`}>
         {props.children}
       </Link>
     </ListItem>

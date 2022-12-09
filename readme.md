@@ -40,13 +40,13 @@ npm run test
 Comando para correr Cypress
 
 ```
-npx cypress open
+npm run cypress
 ```
 
 ## - Code Quality Checks
 
 ```
-npx eslint src/**
+npm run lint
 ```
 
 ### Desarrollado por

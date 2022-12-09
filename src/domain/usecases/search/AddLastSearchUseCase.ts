@@ -1,4 +1,4 @@
-import { analyzeException, DataResult, Left, Right } from "@/domain";
+import { analyzeException, DataResult, Left } from "@/domain";
 import { SearchRepository } from "@/domain/repositories/SearchRepository";
 
 export class AddLastSearchUseCase {

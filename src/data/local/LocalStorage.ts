@@ -3,7 +3,7 @@ export class LocalStorage {
 
   getItem(key: string) {
     return this.storage.getItem(key)
-      ? JSON.parse(this.storage.getItem(key)!)
+      ? JSON.parse(this.storage.getItem(key) ?? "")
       : undefined;
   }
 

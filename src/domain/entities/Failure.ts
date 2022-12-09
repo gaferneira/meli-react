@@ -12,7 +12,7 @@ export enum FAILURE {
 
 export const analyzeException = (exception: any): Failure => {
   let code = FAILURE.UnknownException;
-  let message = "";
+  const message = "";
   if (exception instanceof Error) {
     if (exception.message === "canceled") {
       code = FAILURE.CanceledError;
