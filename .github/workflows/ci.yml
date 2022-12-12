@@ -28,7 +28,7 @@ jobs:
           node-version: "16"
 
       # npm cache
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: ~/.npm-store
           key: ${{ runner.os }}-${{ hashFiles('**/npm-lock.yaml') }}
@@ -36,9 +36,9 @@ jobs:
             ${{ runner.os }}-
       # Install
       - name: INSTALL
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          version: 6.22.2
+          node-version: "16"
           run_install: true
 
       # Build
