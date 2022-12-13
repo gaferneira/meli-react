@@ -36,9 +36,6 @@ jobs:
             ${{ runner.os }}-
       # Install
       - name: INSTALL
-        uses: actions/setup-node@v3
-        with:
-          node-version: "16"
         run: npm install
 
       # Build
