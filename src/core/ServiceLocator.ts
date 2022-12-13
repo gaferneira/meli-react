@@ -1,25 +1,25 @@
-import { GetLastSearchUseCase } from "./../domain/useCases/search/GetLastSearchUseCase";
-import { CleanSearchUseCase } from "./../domain/useCases/search/CleanSearchUseCase";
-import { AddLastSearchUseCase } from "./../domain/useCases/search/AddLastSearchUseCase";
-import { GetFavoritesUseCase } from "../domain/useCases/products/GetFavoritesUseCase";
-import { RemoveFavoriteUseCase } from "../domain/useCases/products/RemoveFavoriteUseCase";
-import { AddFavoriteUseCase } from "../domain/useCases/products/AddFavoriteUseCase";
 import {
-  ProductRepositoryImpl,
+  axiosInstance,
   CountryRepositoryImpl,
   FavoriteRepositoryImpl,
-  SearchRepositoryImpl,
-  axiosInstance,
   LocalStorage,
+  ProductRepositoryImpl,
+  SearchRepositoryImpl,
 } from "@/data";
 import {
-  GetProductUseCase,
-  GetProductsUseCase,
-  ProductRepository,
-  FavoriteRepository,
+  AddFavoriteUseCase,
+  AddLastSearchUseCase,
+  CleanSearchUseCase,
   CountryRepository,
-  SearchRepository,
+  FavoriteRepository,
   GetCurrentCountryUseCase,
+  GetFavoritesUseCase,
+  GetLastSearchUseCase,
+  GetProductsUseCase,
+  GetProductUseCase,
+  ProductRepository,
+  RemoveFavoriteUseCase,
+  SearchRepository,
   UpdateCurrentCountryUseCase,
 } from "@/domain";
 

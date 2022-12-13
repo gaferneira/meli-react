@@ -27,7 +27,7 @@ El proyecto está estructurado en 3 módulos, cada módulo representa una capa d
 - Domain (use cases, repositories, entities...)
 - Data (api rest, localstorage...)
 
-## - Testing:
+## - Testing
 
 - Cada capa contiene sus propias pruebas unitarias
 
@@ -35,7 +35,7 @@ El proyecto está estructurado en 3 módulos, cada módulo representa una capa d
 npm run test
 ```
 
-## - Integration Testing:
+## - Integration Testing
 
 Comando para correr Cypress
 

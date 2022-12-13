@@ -1,0 +1,59 @@
+name: App CI
+
+on:
+  push:
+    # Run on all branches
+    branches:
+      - "*"
+    # Run only if files modified are not docs
+    paths-ignore:
+      - "*.md"
+  pull_request:
+    # Run on all branches
+    branches:
+      - "*"
+    # Run only if files modified are not docs
+    paths-ignore:
+      - "*.md"
+
+jobs:
+  # Build & Test
+  buildAndTest:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      # npm cache
+      - uses: actions/cache@v3
+        with:
+          path: ~/.npm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/npm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+      # Install
+      - name: INSTALL
+        run: npm install
+
+      # Build
+      - name: BUILD
+        run: npm run build:ci
+
+      # Test
+      - name: TEST
+        run: npm run test:ci
+
+      # Upload dist artifacts
+      #- uses: actions/upload-artifact@v2
+      #  with:
+      #    name: dist
+      #    path: dist/
+
+      # Upload coverage artifacts
+      #- uses: actions/upload-artifact@v2
+      #  with:
+      #    name: coverage
+      #    path: coverage/lcov.info
