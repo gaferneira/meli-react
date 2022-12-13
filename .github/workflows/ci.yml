@@ -39,7 +39,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "16"
-          run_install: true
+        run: npm install
 
       # Build
       - name: BUILD
