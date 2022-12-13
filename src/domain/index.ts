@@ -1,4 +1,4 @@
 export * from "./entities";
 export * from "./repositories";
-export * from "./useCases";
+export * from "./usecases";
 export * from "./utils";
