@@ -1,3 +1,4 @@
+import { inject, injectable } from "inversify";
 import {
   analyzeException,
   DataResult,
@@ -5,12 +6,13 @@ import {
   Left,
   Product,
 } from "@/domain";
+import diService from "@/core/diService";
 
+@injectable()
 export class GetFavoritesUseCase {
-  private repository: FavoriteRepository;
-  constructor(_repository: FavoriteRepository) {
-    this.repository = _repository;
-  }
+  constructor(
+    @inject(diService.FavoriteRepository) private repository: FavoriteRepository
+  ) {}
 
   invoke(): DataResult<Product[]> {
     try {
