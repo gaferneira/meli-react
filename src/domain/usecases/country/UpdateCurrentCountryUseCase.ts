@@ -1,3 +1,4 @@
+import { inject, injectable } from "inversify";
 import {
   analyzeException,
   Country,
@@ -5,12 +6,13 @@ import {
   DataResult,
   Left,
 } from "@/domain";
+import diService from "@/core/diService";
 
+@injectable()
 export class UpdateCurrentCountryUseCase {
-  private repository: CountryRepository;
-  constructor(_repository: CountryRepository) {
-    this.repository = _repository;
-  }
+  constructor(
+    @inject(diService.CountryRepository) private repository: CountryRepository
+  ) {}
 
   invoke(countryCode: string): DataResult<Country> {
     try {

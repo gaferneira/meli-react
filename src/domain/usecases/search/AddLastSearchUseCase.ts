@@ -1,11 +1,13 @@
+import { inject, injectable } from "inversify";
 import { analyzeException, DataResult, Left } from "@/domain";
 import { SearchRepository } from "@/domain/repositories/SearchRepository";
+import diService from "@/core/diService";
 
+@injectable()
 export class AddLastSearchUseCase {
-  private repository: SearchRepository;
-  constructor(_repository: SearchRepository) {
-    this.repository = _repository;
-  }
+  constructor(
+    @inject(diService.FavoriteRepository) private repository: SearchRepository
+  ) {}
 
   invoke(search: string): DataResult<string> {
     try {

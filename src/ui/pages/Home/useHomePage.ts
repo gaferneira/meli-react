@@ -7,12 +7,15 @@ import {
   RequestState,
 } from "@/domain";
 import { addSearch, selectCountry, useAppDispatch, useAppSelector } from "@/ui";
-import { getServiceLocator } from "@/core";
+import { diContainer } from "@/core/diContainer";
+import diService from "@/core/diService";
 
 export type ProductsState = RequestState<Product[]>;
 
 const useHomePage = (
-  getProducts: GetProductsUseCase = getServiceLocator().getProductsUseCase()
+  getProducts: GetProductsUseCase = diContainer.get<GetProductsUseCase>(
+    diService.GetProductsUseCase
+  )
 ) => {
   const [productState, setProductState] = useState<ProductsState>({
     data: [],
