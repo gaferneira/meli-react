@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import debounce from "lodash.debounce";
+import { debounce } from "@/ui/utils";
 import { FormComponent } from "@/ui";
 
 interface Props {
@@ -19,7 +19,7 @@ const Search: React.FC<Props> = ({
 }) => {
   const [searchStr, setSearchStr] = useState<string>("");
   const debouncedSearch = useRef(
-    debounce((value) => {
+    debounce((value: string) => {
       if (value && value.length > limit) {
         onChange(value);
         if (storePrevQuery) storePrevQuery(value);
