@@ -50,6 +50,14 @@ jobs:
       - name: TEST
         run: npm run test:ci
 
+      # Install Playwright browsers
+      - name: INSTALL PLAYWRIGHT
+        run: npx playwright install chromium --with-deps
+
+      # E2E Tests
+      - name: E2E
+        run: npm run e2e
+
       # Upload dist artifacts
       #- uses: actions/upload-artifact@v2
       #  with:
