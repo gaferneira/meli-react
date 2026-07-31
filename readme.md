@@ -9,15 +9,18 @@ Esto es un ejemplo de una aplicación en React desarrollada con clean architectu
 
 ## - Tecnologias utilizadas
 
-- Typescript
+- TypeScript 5
 - Clean architecture
-- Redux Toolkit
-- Vite
-- MUI
-- Unit tests (ts-mockito, vitest, jest, testing-library)
-- Cypress, E2E tests
-- Git actions
-- ESLint
+- React 19
+- Redux Toolkit 2
+- Vite 8
+- MUI 9
+- Emotion (styling)
+- Unit tests (vitest, testing-library)
+- Playwright, E2E tests
+- GitHub Actions
+- ESLint 9 (flat config)
+- Prettier 3
 
 ## - Clean architecture
 
@@ -37,10 +40,10 @@ npm run test
 
 ## - Integration Testing
 
-Comando para correr Cypress
+Comando para correr Playwright
 
 ```
-npm run cypress
+npm run e2e
 ```
 
 ## - Code Quality Checks
