@@ -19,10 +19,10 @@
     "cypress": "npx cypress open"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/material": "^6.5.0",
-    "@mui/x-data-grid": "^6.20.4",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.11",
+    "@mui/x-data-grid": "^7.29.13",
     "@reduxjs/toolkit": "^2.0.0",
     "axios": "^1.1.3",
     "i18next": "^22.0.7",

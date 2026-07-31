@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Checkbox } from "@mui/material";
-import { DataGrid, GridRenderCellParams, GridPaginationModel } from "@mui/x-data-grid";
+import { DataGrid, GridRenderCellParams, GridPaginationModel, GridColDef } from "@mui/x-data-grid";
 import { Product } from "@/domain";
 import useProductTable from "./useProductsTable";
 import { Link } from "react-router-dom";
@@ -24,7 +24,7 @@ export const ProductsTable: React.FC<ProductsTableInterface> = ({
 
   const { t } = useTranslation();
 
-  const columns = [
+  const columns: GridColDef<Product>[] = [
     {
       field: "actions",
       type: "actions",
@@ -42,10 +42,10 @@ export const ProductsTable: React.FC<ProductsTableInterface> = ({
           />
         </>
       ),
-    },
+    } as GridColDef<Product>,
     {
       field: "id",
-      headerName: t("Link"),
+      headerName: String(t("Link")),
       flex: 1,
       renderCell: (params: GridRenderCellParams) => (
         <>
@@ -57,13 +57,13 @@ export const ProductsTable: React.FC<ProductsTableInterface> = ({
     },
     {
       field: "title",
-      headerName: t("Title"),
+      headerName: String(t("Title")),
       flex: 1,
       renderCell: (params: GridRenderCellParams) => <>{params.value}</>,
     },
     {
       field: "price",
-      headerName: t("Price"),
+      headerName: String(t("Price")),
       flex: 1,
       renderCell: (params: GridRenderCellParams) => <>{params.value} </>,
     },
