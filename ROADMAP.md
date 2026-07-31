@@ -37,7 +37,7 @@ Staying a Vite SPA — no metaframework migration in scope.
 
 ## Phase 5 — Closing deferred dependency debt
 
-- [ ] Inversify 6.0.1 → 8.2.3. Do it incrementally per major (6→7→8, one commit each) and verify DI container resolution + all tests at every hop — this is the architectural core of the template, so a silent breaking change here is the worst place to have one. Check each major's changelog for container API changes (`Container` construction, `@injectable`/`@inject` decorator signatures, binding syntax) before bumping.
+- [x] Inversify 6.0.1 → 8.2.3. Upgraded incrementally per major via two commits (6→7.11.0, then 7→8.2.3). Both hops required no code changes to container construction, `@injectable`/`@inject` decorators, or binding syntax — the codebase uses only standard APIs that remained stable. The 7→8 hop required updating tsconfig.json's `moduleResolution` from "Node" to "bundler" for TypeScript 5.x compatibility with inversify's module exports. All 7 tests pass, lint and build clean at both hops — DI container resolution verified.
 - [ ] react-router-dom 6.30.4 → 7.x. v7 folds in the former "data router" APIs and changes the package structure (single `react-router` package vs `react-router-dom`); confirm current usage (Route, Routes, Link, useParams, useLocation, useMatch, useResolvedPath) still maps 1:1 or note what changed. Previously deferred twice as "optional" — now worth closing since 6.x is out of active feature development upstream.
 - [ ] jsdom 20.0.3 → 29.1.1 (vitest test environment only — should be low risk, but re-run the full suite since 9 majors is a wide jump).
 - [ ] ESLint 9.39 → 10.x + @eslint/js 9 → 10. Check flat-config breaking changes in the 10.0 release notes before bumping.
