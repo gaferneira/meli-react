@@ -16,9 +16,11 @@ const useProductTable = (favorites: Product[] | undefined) => {
   const handleFavoriteChange = (product: Product) => {
     const setAsFavorite = !isFavorite(product);
 
-    setAsFavorite
-      ? dispatch(addFavorite(product))
-      : dispatch(removeFavorite(product));
+    if (setAsFavorite) {
+      dispatch(addFavorite(product));
+    } else {
+      dispatch(removeFavorite(product));
+    }
 
     const filteredProducts = setAsFavorite
       ? [...selected, product]
