@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Checkbox } from "@mui/material";
-import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
+import { DataGrid, GridRenderCellParams, GridPaginationModel } from "@mui/x-data-grid";
 import { Product } from "@/domain";
 import useProductTable from "./useProductsTable";
 import { Link } from "react-router-dom";
@@ -15,7 +15,10 @@ export const ProductsTable: React.FC<ProductsTableInterface> = ({
   products,
   favorites,
 }: ProductsTableInterface) => {
-  const pageSize = 5;
+  const [paginationModel, setPaginationModel] = useState<GridPaginationModel>({
+    pageSize: 5,
+    page: 0,
+  });
 
   const { isFavorite, handleFavoriteChange } = useProductTable(favorites);
 
@@ -71,10 +74,11 @@ export const ProductsTable: React.FC<ProductsTableInterface> = ({
         columns={columns}
         rows={products}
         disableColumnSelector
-        disableSelectionOnClick
+        disableRowSelectionOnClick
         autoHeight
-        pageSize={pageSize}
-        rowsPerPageOptions={[pageSize]}
+        paginationModel={paginationModel}
+        onPaginationModelChange={setPaginationModel}
+        pageSizeOptions={[5]}
         getRowId={(row: any) => row.id}
       />
     </div>
