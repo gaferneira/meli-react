@@ -9,7 +9,7 @@ import type {
 import { DataGrid } from "@mui/x-data-grid";
 import type { Product } from "@/domain";
 import useProductTable from "./useProductsTable";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 
 export interface ProductsTableInterface {

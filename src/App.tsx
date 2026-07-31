@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { Route } from "react-router-dom";
+import { Route } from "react-router";
 import { CircularProgress } from "@mui/material";
 import { Navbar, LayoutContainer, RoutesWithNotFound } from "@/ui";
 import "@/App.css";
