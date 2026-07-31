@@ -8,7 +8,7 @@ Staying a Vite SPA — no metaframework migration in scope.
 
 - [x] Node engines field + upgrade to a current LTS baseline (Node 20).
 - [x] Vite 3 → 8 (done incrementally: 3→4→5→6→7→8, one commit per major, verifying build/dev/test at each step; latest moved to 8 mid-roadmap so the target was extended past the original 7).
-- [ ] Vitest 0.25 → latest. Replace `@vitest/coverage-c8` (deprecated) with `@vitest/coverage-v8`.
+- [x] Vitest 0.25 → latest (4.1.10). Replaced `@vitest/coverage-c8` (deprecated) with `@vitest/coverage-v8`. All 3 test files / 7 tests passed unchanged; also drops the duplicate nested Vite install vitest 0.25 was carrying.
 - [ ] TypeScript 4.9 → 5.x. Recheck `experimentalDecorators` behavior with Inversify — TS5 still supports legacy decorators but confirm `useDefineForClassFields` interaction.
 - [ ] ESLint 8 → 9. Migrate `.eslintrc.json` to flat config (`eslint.config.js`). `eslint-config-standard-with-typescript` and several plugins need flat-config-compatible versions or replacement with `typescript-eslint`'s own recommended configs.
 - [ ] Prettier 2 → 3.
