@@ -45,5 +45,14 @@ Staying a Vite SPA — no metaframework migration in scope.
 - [x] Wire Playwright e2e into CI — deferred in Phase 3. Added two steps to `.github/workflows/ci.yml` after BUILD: INSTALL PLAYWRIGHT (`npx playwright install chromium --with-deps` — scoped to chromium only per config) and E2E (`npm run e2e`). The `webServer` config in `playwright.config.ts` auto-starts the dev server when tests run, so no separate serve step needed. CI pipeline order: INSTALL → LINT → BUILD → TEST → E2E. All existing tests pass; YAML structure matches existing job format.
 - [x] Bump stale GitHub Actions versions in `.github/workflows/ci.yml`: `actions/checkout@v3` → v4, `actions/setup-node@v3` → v4, `actions/cache@v3` → v4. All three actions now use stable v4 releases, ensuring current tooling support across CI pipeline.
 
-**Explicitly out of scope for Phase 5** (revisit later, not dependency debt): TypeScript 5.9 → 7.0.2 is the native Go-based compiler rewrite, not a routine bump — the wider ecosystem (ESLint's typescript-eslint, ts-node-style tooling) needs to catch up first. RTK Query and further react-router v7 data-API adoption remain deliberate architectural decisions for a separate change, not dependency-bump work.
+## Phase 6 — TS7, quality/DX, and deferred architecture calls
+
+- [x] TypeScript 5.9 → 6.0.3. Stays inside `typescript-eslint` 8.65.0's supported peer range (`>=4.8.4 <6.1.0`), so lint keeps working unchanged. Only fallout: `esModuleInterop: false` triggers TS6's new deprecation warning (removed entirely in TS7) — silenced with `"ignoreDeprecations": "6.0"` in `tsconfig.json` rather than flipping the flag, to avoid an unrelated behavior change. `tsc --noEmit`, lint, build, and all 7 tests pass unchanged.
+- [ ] TypeScript 6.0.3 → 7.0.2 (native/Go compiler rewrite). Deferred: `typescript-eslint` has no TS7 support yet as of this writing (peer range caps at `<6.1.0`), so upgrading now would break type-aware lint rules. Re-check `typescript-eslint`'s peer range before attempting this hop.
+- [ ] Re-add `eslint-plugin-react` (removed in Phase 5 — TODO left in `eslint.config.js`). As of this writing its peer range still caps at `eslint ^9.7`, so it remains blocked on ESLint 10; re-check status before starting.
+- [ ] Accessibility audit: add `eslint-plugin-jsx-a11y` and manually audit existing components (Navbar, Search, data table, forms) against it.
+- [ ] Bundle size / code splitting: add a bundle visualizer (e.g. `rollup-plugin-visualizer`) and evaluate route-based lazy loading with `React.lazy`.
+- [ ] Architecture revisit: re-evaluate RTK Query vs. the hand-rolled axios repositories (deferred in Phase 2), and react-router v7's data APIs (loaders/actions, deferred in Phase 5) now that both are mature.
+
+**Explicitly out of scope for Phase 5** (picked up in Phase 6): TypeScript 5.9 → 7.0.2 is the native Go-based compiler rewrite, not a routine bump — the wider ecosystem (ESLint's typescript-eslint, ts-node-style tooling) needs to catch up first. RTK Query and further react-router v7 data-API adoption remain deliberate architectural decisions, tracked as Phase 6's architecture revisit item.
 
