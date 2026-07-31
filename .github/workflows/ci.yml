@@ -38,6 +38,10 @@ jobs:
       - name: INSTALL
         run: npm install
 
+      # Lint
+      - name: LINT
+        run: npm run lint:ci
+
       # Build
       - name: BUILD
         run: npm run build:ci

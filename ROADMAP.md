@@ -26,7 +26,7 @@ Staying a Vite SPA — no metaframework migration in scope.
 
 ## Phase 3 — Testing & CI
 
-- [ ] Confirm `.github/workflows/ci.yml` runs lint, typecheck, unit tests, and coverage — not just build.
+- [x] Confirm `.github/workflows/ci.yml` runs lint, typecheck, unit tests, and coverage — not just build. Added `lint:ci` script to package.json (`eslint src` without `--fix`) and integrated into CI pipeline before BUILD. Using `--fix` in CI silently fixes errors instead of failing the run; CI must fail on lint errors to enforce standards. Pipeline order: INSTALL → LINT → BUILD (typecheck+build) → TEST (coverage). All scripts pass locally.
 - [ ] Consider Cypress → Playwright for E2E. Not mandatory (Cypress is still maintained), but Playwright is the more common default for new React templates now and has better CI ergonomics (parallelization, trace viewer).
 - [ ] Update `ts-mockito` usage — check it's still maintained; `vitest`'s built-in `vi.fn()`/`vi.mock` may cover the same needs without an extra dependency.
 
