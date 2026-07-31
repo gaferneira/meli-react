@@ -3,10 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import type {
   GetFavoritesUseCase,
   Product,
-  RemoveFavoriteUseCase} from "@/domain";
-import {
-  rightOrDefault,
+  RemoveFavoriteUseCase,
 } from "@/domain";
+import { rightOrDefault } from "@/domain";
 import { diContainer } from "@/core/diContainer";
 import diService from "@/core/diService";
 

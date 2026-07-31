@@ -3,7 +3,8 @@ import type {
   CountryRepository,
   FavoriteRepository,
   ProductRepository,
-  SearchRepository} from "../domain";
+  SearchRepository,
+} from "../domain";
 import {
   GetCurrentCountryUseCase,
   UpdateCurrentCountryUseCase,

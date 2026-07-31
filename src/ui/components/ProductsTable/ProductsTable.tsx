@@ -1,7 +1,11 @@
 import type React from "react";
 import { useState } from "react";
 import { Checkbox } from "@mui/material";
-import type { GridRenderCellParams, GridPaginationModel, GridColDef } from "@mui/x-data-grid";
+import type {
+  GridRenderCellParams,
+  GridPaginationModel,
+  GridColDef,
+} from "@mui/x-data-grid";
 import { DataGrid } from "@mui/x-data-grid";
 import type { Product } from "@/domain";
 import useProductTable from "./useProductsTable";

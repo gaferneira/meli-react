@@ -1,11 +1,5 @@
-import type {
-  Country,
-  CountryRepository,
-  DataResult} from "@/domain";
-import {
-  findCountryByCode,
-  Right,
-} from "@/domain";
+import type { Country, CountryRepository, DataResult } from "@/domain";
+import { findCountryByCode, Right } from "@/domain";
 import { StorageTypes } from "../dto";
 import type { LocalStorage } from "../local";
 

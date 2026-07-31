@@ -1,14 +1,7 @@
-import type {
-  DataResult,
-  Product,
-  ProductRepository} from "@/domain";
-import {
-  analyzeException,
-  Left,
-  Right,
-} from "@/domain";
+import type { DataResult, Product, ProductRepository } from "@/domain";
+import { analyzeException, Left, Right } from "@/domain";
 import type { AxiosInstance } from "axios";
-import type { ApiResponseProducts, ProductDto} from "../dto";
+import type { ApiResponseProducts, ProductDto } from "../dto";
 import { ProductDtoToEntity } from "../dto";
 import { getProductEndpoint, getSearchProductsEndpoint } from "../remote";
 import { getCancelToken } from "../utils";

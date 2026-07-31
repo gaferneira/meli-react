@@ -1,4 +1,4 @@
-import type { DataResult} from "@/domain";
+import type { DataResult } from "@/domain";
 import { Right } from "@/domain";
 import type { SearchRepository } from "@/domain/repositories/SearchRepository";
 import { StorageTypes } from "../dto";

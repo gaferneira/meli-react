@@ -3,11 +3,9 @@ import diService from "@/core/diService";
 import type {
   Country,
   GetCurrentCountryUseCase,
-  UpdateCurrentCountryUseCase} from "@/domain";
-import {
-  countryValues,
-  rightOrDefault
+  UpdateCurrentCountryUseCase,
 } from "@/domain";
+import { countryValues, rightOrDefault } from "@/domain";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: Country = rightOrDefault(

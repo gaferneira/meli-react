@@ -1,10 +1,9 @@
 import type {
   GetLastSearchUseCase,
   AddLastSearchUseCase,
-  CleanSearchUseCase} from "@/domain";
-import {
-  rightOrDefault,
+  CleanSearchUseCase,
 } from "@/domain";
+import { rightOrDefault } from "@/domain";
 import { createSlice } from "@reduxjs/toolkit";
 import { diContainer } from "@/core/diContainer";
 import diService from "@/core/diService";
