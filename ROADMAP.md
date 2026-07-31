@@ -15,7 +15,7 @@ Staying a Vite SPA — no metaframework migration in scope.
 
 ## Phase 2 — Dependency modernization
 
-- [ ] React 18 → 19. Check for removed APIs (`propTypes` on function components is already gone from your config, good) and adopt `use()` where it simplifies data loading if relevant.
+- [x] React 18 → 19. Bumped react, react-dom to ^19.0.0; @types/react, @types/react-dom to ^19.0.0; @testing-library/react to ^16.0.0. React 19 removed implicit children typing on styled-components — added explicit children and className props to the List component in Navbar. tsc, build, lint, and all 7 tests pass. `use()` not adopted: no clear win in this codebase (no Promise-based data loading at component boundary).
 - [ ] Redux Toolkit 1.9 → 2.x. Evaluate RTK Query to replace hand-rolled axios repositories in `src/data/remote` — this is the one place where a real API change (not just a bump) pays off for a template meant to show "current best practice."
 - [ ] react-router-dom 6.4 → 6.latest (or 7, if you want to demonstrate the new data APIs — optional, not required for an SPA).
 - [ ] You currently ship both `styled-components` and `@emotion` (MUI's default engine) — that's duplicate runtime weight with no benefit. Drop `styled-components`.

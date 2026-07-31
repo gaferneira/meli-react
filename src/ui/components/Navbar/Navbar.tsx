@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import CustomLink from "./CustomLink";
 
-export const List = styled.ul`
+export const List = styled.ul<{ children?: React.ReactNode; className?: string }>`
   list-style: none;
   display: flex;
   cursor: default;
