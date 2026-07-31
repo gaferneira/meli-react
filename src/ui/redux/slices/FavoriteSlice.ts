@@ -1,9 +1,10 @@
-import { AddFavoriteUseCase } from "./../../../domain/usecases/products/AddFavoriteUseCase";
+import type { AddFavoriteUseCase } from "./../../../domain/usecases/products/AddFavoriteUseCase";
 import { createSlice } from "@reduxjs/toolkit";
-import {
+import type {
   GetFavoritesUseCase,
   Product,
-  RemoveFavoriteUseCase,
+  RemoveFavoriteUseCase} from "@/domain";
+import {
   rightOrDefault,
 } from "@/domain";
 import { diContainer } from "@/core/diContainer";

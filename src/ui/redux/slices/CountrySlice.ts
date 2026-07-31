@@ -1,18 +1,20 @@
 import { diContainer } from "@/core/diContainer";
 import diService from "@/core/diService";
+import type {
+  Country,
+  GetCurrentCountryUseCase,
+  UpdateCurrentCountryUseCase} from "@/domain";
 import {
   countryValues,
-  GetCurrentCountryUseCase,
-  rightOrDefault,
-  UpdateCurrentCountryUseCase,
+  rightOrDefault
 } from "@/domain";
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = rightOrDefault(
+const initialState: Country = rightOrDefault(
   diContainer
     .get<GetCurrentCountryUseCase>(diService.GetCurrentCountryUseCase)
     .invoke(),
-  countryValues[0],
+  countryValues[0]!,
 );
 
 export const countrySlice = createSlice({

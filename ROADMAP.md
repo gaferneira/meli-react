@@ -32,7 +32,7 @@ Staying a Vite SPA — no metaframework migration in scope.
 
 ## Phase 4 — Polish
 
-- [ ] Re-audit `tsconfig.json` against TS5 strictness options (`noUncheckedIndexedAccess`, `verbatimModuleSyntax`) — good template selling point.
+- [x] Re-audit `tsconfig.json` against TS5 strictness options (`noUncheckedIndexedAccess`, `verbatimModuleSyntax`) — good template selling point. Both options enabled. One file (CountrySlice) required an explicit type annotation on `initialState: Country` and a non-null assertion on `countryValues[0]!` to guard against the index-access `undefined` case (justified: static array with 18 guaranteed entries). ESLint rule `@typescript-eslint/consistent-type-imports` added and auto-fixed 74 type-only imports across src/ (no manual edits needed beyond the auto-fixes). Build, lint, and all 7 tests pass.
 - [ ] README: update tech list once the above lands.
 
 ## Suggested execution order

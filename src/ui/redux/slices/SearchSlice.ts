@@ -1,7 +1,8 @@
-import {
+import type {
   GetLastSearchUseCase,
   AddLastSearchUseCase,
-  CleanSearchUseCase,
+  CleanSearchUseCase} from "@/domain";
+import {
   rightOrDefault,
 } from "@/domain";
 import { createSlice } from "@reduxjs/toolkit";

@@ -1,4 +1,5 @@
-import { GetProductUseCase, match, Product, RequestState } from "@/domain";
+import type { GetProductUseCase, Product, RequestState } from "@/domain";
+import { match } from "@/domain";
 import { useState } from "react";
 import { diContainer } from "@/core/diContainer";
 

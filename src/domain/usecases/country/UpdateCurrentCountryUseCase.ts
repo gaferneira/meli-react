@@ -1,9 +1,10 @@
 import { inject, injectable } from "inversify";
-import {
-  analyzeException,
+import type {
   Country,
   CountryRepository,
-  DataResult,
+  DataResult} from "@/domain";
+import {
+  analyzeException,
   Left,
 } from "@/domain";
 import diService from "@/core/diService";

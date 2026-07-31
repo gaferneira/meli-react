@@ -1,9 +1,10 @@
 import { Container } from "inversify";
-import {
+import type {
   CountryRepository,
   FavoriteRepository,
   ProductRepository,
-  SearchRepository,
+  SearchRepository} from "../domain";
+import {
   GetCurrentCountryUseCase,
   UpdateCurrentCountryUseCase,
   AddFavoriteUseCase,

@@ -1,5 +1,6 @@
-import { LocalStorage } from "./../local/LocalStorage";
-import { DataResult, FavoriteRepository, Product, Right } from "@/domain";
+import type { LocalStorage } from "./../local/LocalStorage";
+import type { DataResult, FavoriteRepository, Product} from "@/domain";
+import { Right } from "@/domain";
 import { StorageTypes } from "../dto";
 
 export class FavoriteRepositoryImpl implements FavoriteRepository {

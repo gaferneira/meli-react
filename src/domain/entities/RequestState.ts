@@ -1,4 +1,4 @@
-import { Failure } from "./Failure";
+import type { Failure } from "./Failure";
 
 export interface RequestState<DataType = string> {
   data: DataType | null;

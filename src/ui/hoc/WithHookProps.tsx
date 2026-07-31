@@ -2,7 +2,7 @@
  * https://levelup.gitconnected.com/react-functional-programming-separate-view-from-logic-gracefully-5280333676e1
  */
 
-import { ComponentType } from "react";
+import type { ComponentType } from "react";
 
 type HookImpl = (props: any) => any;
 

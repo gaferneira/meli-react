@@ -1,10 +1,11 @@
 import { useState } from "react";
-import {
-  FAILURE,
-  match,
+import type {
   GetProductsUseCase,
   Product,
-  RequestState,
+  RequestState} from "@/domain";
+import {
+  FAILURE,
+  match
 } from "@/domain";
 import { addSearch, selectCountry, useAppDispatch, useAppSelector } from "@/ui";
 import { diContainer } from "@/core/diContainer";

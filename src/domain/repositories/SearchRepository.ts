@@ -1,4 +1,4 @@
-import { DataResult } from "../entities";
+import type { DataResult } from "../entities";
 
 export interface SearchRepository {
   getLastSearch(): DataResult<string>;

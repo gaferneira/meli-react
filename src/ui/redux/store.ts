@@ -1,4 +1,4 @@
-import { Product, Country } from "@/domain/entities";
+import type { Product, Country } from "@/domain/entities";
 import { configureStore } from "@reduxjs/toolkit";
 import { favoriteSlice, countrySlice, searchSlice } from "./slices";
 export interface AppStore {

@@ -1,7 +1,8 @@
 import i18n from "@/core/i18n";
 import { pages } from "@/ui";
 import { AppBar, Toolbar } from "@mui/material";
-import { ChangeEvent, useState } from "react";
+import type { ChangeEvent} from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "@emotion/styled";
 import CustomLink from "./CustomLink";

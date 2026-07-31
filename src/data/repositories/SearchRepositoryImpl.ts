@@ -1,7 +1,8 @@
-import { DataResult, Right } from "@/domain";
-import { SearchRepository } from "@/domain/repositories/SearchRepository";
+import type { DataResult} from "@/domain";
+import { Right } from "@/domain";
+import type { SearchRepository } from "@/domain/repositories/SearchRepository";
 import { StorageTypes } from "../dto";
-import { LocalStorage } from "../local";
+import type { LocalStorage } from "../local";
 
 export class SearchRepositoryImpl implements SearchRepository {
   constructor(private readonly localStorage: LocalStorage) {}

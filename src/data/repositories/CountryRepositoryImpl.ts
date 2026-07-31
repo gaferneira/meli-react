@@ -1,12 +1,13 @@
-import {
+import type {
   Country,
   CountryRepository,
-  DataResult,
+  DataResult} from "@/domain";
+import {
   findCountryByCode,
   Right,
 } from "@/domain";
 import { StorageTypes } from "../dto";
-import { LocalStorage } from "../local";
+import type { LocalStorage } from "../local";
 
 export class CountryRepositoryImpl implements CountryRepository {
   constructor(private readonly localStorage: LocalStorage) {}
