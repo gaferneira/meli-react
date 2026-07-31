@@ -11,8 +11,10 @@ export default tseslint.config(
     extends: [
       js.configs.recommended,
       ...tseslint.configs.recommended,
-      react.configs.flat.recommended,
-      react.configs.flat["jsx-runtime"],
+      // react.configs.flat.recommended,
+      // react.configs.flat["jsx-runtime"],
+      // TODO: Re-enable react plugin config after eslint-plugin-react v7.38+ releases with ESLint 10 support
+      // See: https://github.com/jsx-eslint/eslint-plugin-react/pull/4022
     ],
     languageOptions: {
       ecmaVersion: "latest",
@@ -26,7 +28,7 @@ export default tseslint.config(
       react: { version: "detect" },
     },
     rules: {
-      "react/prop-types": "off",
+      // "react/prop-types": "off",
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/no-empty-object-type": [
         "error",

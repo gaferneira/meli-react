@@ -40,7 +40,7 @@
     "rxjs": "^7.5.7"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.5",
+    "@eslint/js": "^10.0.0",
     "@playwright/test": "^1.62.1",
     "@testing-library/dom": "^10.0.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -51,7 +51,7 @@
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^5.2.0",
     "@vitest/coverage-v8": "^4.1.10",
-    "eslint": "^9.39.1",
+    "eslint": "^10.0.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^17.8.0",
