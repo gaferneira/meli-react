@@ -35,13 +35,15 @@ Staying a Vite SPA — no metaframework migration in scope.
 - [x] Re-audit `tsconfig.json` against TS5 strictness options (`noUncheckedIndexedAccess`, `verbatimModuleSyntax`) — good template selling point. Both options enabled. One file (CountrySlice) required an explicit type annotation on `initialState: Country` and a non-null assertion on `countryValues[0]!` to guard against the index-access `undefined` case (justified: static array with 18 guaranteed entries). ESLint rule `@typescript-eslint/consistent-type-imports` added and auto-fixed 74 type-only imports across src/ (no manual edits needed beyond the auto-fixes). Build, lint, and all 7 tests pass.
 - [x] README: update tech list once the above lands. Tech list refreshed to reflect all completed bumps (React 19, RTK 2, Vite 8, MUI 9, TS 5, ESLint 9, Prettier 3, Emotion) and Cypress references replaced with Playwright (`npm run e2e`).
 
-## Suggested execution order
+## Phase 5 — Closing deferred dependency debt
 
-1. Phase 1 (tooling) first — everything else is easier to verify once lint/build/test run on current tooling.
-2. Phase 2 dependency bumps one at a time, running tests after each (especially MUI and RTK — both have real breaking changes).
-3. Phase 3 CI/testing once the app itself is stable on new deps.
-4. Phase 4 whenever.
+- [ ] Inversify 6.0.1 → 8.2.3. Do it incrementally per major (6→7→8, one commit each) and verify DI container resolution + all tests at every hop — this is the architectural core of the template, so a silent breaking change here is the worst place to have one. Check each major's changelog for container API changes (`Container` construction, `@injectable`/`@inject` decorator signatures, binding syntax) before bumping.
+- [ ] react-router-dom 6.30.4 → 7.x. v7 folds in the former "data router" APIs and changes the package structure (single `react-router` package vs `react-router-dom`); confirm current usage (Route, Routes, Link, useParams, useLocation, useMatch, useResolvedPath) still maps 1:1 or note what changed. Previously deferred twice as "optional" — now worth closing since 6.x is out of active feature development upstream.
+- [ ] jsdom 20.0.3 → 29.1.1 (vitest test environment only — should be low risk, but re-run the full suite since 9 majors is a wide jump).
+- [ ] ESLint 9.39 → 10.x + @eslint/js 9 → 10. Check flat-config breaking changes in the 10.0 release notes before bumping.
+- [ ] Low-risk minor/patch bumps: `@testing-library/jest-dom` 5→6, `@testing-library/user-event` → 14.6.1, `@types/node` 22→26, `rxjs` 7.5→7.8, `@vitejs/plugin-react` 5→6.
+- [ ] Wire Playwright e2e into CI — deferred in Phase 3. Add a job (or step) that installs Playwright browser binaries (`npx playwright install --with-deps`) and runs `npm run e2e` against a built/served app.
+- [ ] Bump stale GitHub Actions versions in `.github/workflows/ci.yml`: `actions/checkout@v3` → v4, `actions/setup-node@v3` → v4, `actions/cache@v3` → v4.
 
-Do dependency bumps in small, separately-committed steps — a template repo is exactly
-the place where "upgrade everything in one PR" makes the eventual diff useless as a
-reference for others following along.
+**Explicitly out of scope for Phase 5** (revisit later, not dependency debt): TypeScript 5.9 → 7.0.2 is the native Go-based compiler rewrite, not a routine bump — the wider ecosystem (ESLint's typescript-eslint, ts-node-style tooling) needs to catch up first. RTK Query and further react-router v7 data-API adoption remain deliberate architectural decisions for a separate change, not dependency-bump work.
+
