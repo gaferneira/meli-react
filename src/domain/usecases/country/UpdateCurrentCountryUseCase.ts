@@ -11,7 +11,7 @@ import diService from "@/core/diService";
 @injectable()
 export class UpdateCurrentCountryUseCase {
   constructor(
-    @inject(diService.CountryRepository) private repository: CountryRepository
+    @inject(diService.CountryRepository) private repository: CountryRepository,
   ) {}
 
   invoke(countryCode: string): DataResult<Country> {

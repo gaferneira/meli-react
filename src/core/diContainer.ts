@@ -31,7 +31,7 @@ const configRepositories = (container: Container) => {
   container
     .bind<FavoriteRepository>(diService.FavoriteRepository)
     .toConstantValue(
-      new FavoriteRepositoryImpl(new LocalStorage(localStorage))
+      new FavoriteRepositoryImpl(new LocalStorage(localStorage)),
     );
   container
     .bind<ProductRepository>(diService.ProductRepository)
@@ -39,7 +39,7 @@ const configRepositories = (container: Container) => {
   container
     .bind<SearchRepository>(diService.SearchRepository)
     .toConstantValue(
-      new SearchRepositoryImpl(new LocalStorage(sessionStorage))
+      new SearchRepositoryImpl(new LocalStorage(sessionStorage)),
     );
 };
 

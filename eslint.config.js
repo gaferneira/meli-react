@@ -28,8 +28,11 @@ export default tseslint.config(
     rules: {
       "react/prop-types": "off",
       "@typescript-eslint/no-explicit-any": "warn",
-      "@typescript-eslint/no-empty-object-type": ["error", { allowObjectTypes: "always" }],
+      "@typescript-eslint/no-empty-object-type": [
+        "error",
+        { allowObjectTypes: "always" },
+      ],
     },
   },
-  prettier
+  prettier,
 );

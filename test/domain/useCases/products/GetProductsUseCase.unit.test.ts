@@ -13,14 +13,14 @@ describe("GetProductsUseCase Test", () => {
     //GIVEN
     const productRepository: ProductRepository = mock();
     const getProductsUseCase = new GetProductsUseCase(
-      instance(productRepository)
+      instance(productRepository),
     );
     const country = "co";
     const query = "query";
     const repositoryResponse = Right([]);
     //WHEN
     when(productRepository.getProducts(country, query)).thenReturn(
-      Promise.resolve(repositoryResponse)
+      Promise.resolve(repositoryResponse),
     );
     const response = await getProductsUseCase.invoke(country, query);
     //THEN
@@ -32,13 +32,13 @@ describe("GetProductsUseCase Test", () => {
     //GIVEN
     const productRepository: ProductRepository = mock();
     const getProductsUseCase = new GetProductsUseCase(
-      instance(productRepository)
+      instance(productRepository),
     );
     const country = "co";
     const query = "query";
     //WHEN
     when(productRepository.getProducts(country, query)).thenThrow(
-      new Error("Fail to connect to the server")
+      new Error("Fail to connect to the server"),
     );
     const response = await getProductsUseCase.invoke(country, query);
     //THEN

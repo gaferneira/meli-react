@@ -21,7 +21,7 @@ export class FavoriteRepositoryImpl implements FavoriteRepository {
   }
   removeFavorite(product: Product): DataResult<Product[]> {
     const filteredList = this.getAll().filter(
-      (p: Product) => p.id !== product.id
+      (p: Product) => p.id !== product.id,
     );
     this.localStorage.setItem(StorageTypes.FAVORITE, filteredList);
     return Right(filteredList);

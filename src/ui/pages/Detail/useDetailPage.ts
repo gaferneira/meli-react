@@ -8,8 +8,8 @@ import diService from "@/core/diService";
 
 const useDetailPage = (
   getProductUseCase: GetProductUseCase = diContainer.get<GetProductUseCase>(
-    diService.UpdateCurrentCountryUseCase
-  )
+    diService.UpdateCurrentCountryUseCase,
+  ),
 ) => {
   const [product, setProduct] = useState<ProductState>({
     data: null,
@@ -25,7 +25,7 @@ const useDetailPage = (
       (_failure) => {
         failure = _failure;
       },
-      (_data) => (data = _data)
+      (_data) => (data = _data),
     );
     setProduct({ ...product, data, loading: false, failure });
   };

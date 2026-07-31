@@ -14,8 +14,8 @@ export type ProductsState = RequestState<Product[]>;
 
 const useHomePage = (
   getProducts: GetProductsUseCase = diContainer.get<GetProductsUseCase>(
-    diService.GetProductsUseCase
-  )
+    diService.GetProductsUseCase,
+  ),
 ) => {
   const [productState, setProductState] = useState<ProductsState>({
     data: [],
@@ -44,7 +44,7 @@ const useHomePage = (
       },
       (_data) => {
         data = _data;
-      }
+      },
     );
     setProductState({ data, loading: false, failure });
   };

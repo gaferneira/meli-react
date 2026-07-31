@@ -7,7 +7,7 @@ import diService from "@/core/diService";
 @injectable()
 export class GetProductUseCase {
   constructor(
-    @inject(diService.FavoriteRepository) private repository: ProductRepository
+    @inject(diService.FavoriteRepository) private repository: ProductRepository,
   ) {}
 
   async invoke(id: string): Promise<Either<Failure, Product>> {

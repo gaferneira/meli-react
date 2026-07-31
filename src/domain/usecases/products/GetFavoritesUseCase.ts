@@ -11,7 +11,8 @@ import diService from "@/core/diService";
 @injectable()
 export class GetFavoritesUseCase {
   constructor(
-    @inject(diService.FavoriteRepository) private repository: FavoriteRepository
+    @inject(diService.FavoriteRepository)
+    private repository: FavoriteRepository,
   ) {}
 
   invoke(): DataResult<Product[]> {

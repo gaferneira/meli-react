@@ -12,7 +12,7 @@ const initialState: string = rightOrDefault(
   diContainer
     .get<GetLastSearchUseCase>(diService.GetLastSearchUseCase)
     .invoke(),
-  ""
+  "",
 );
 
 export const searchSlice = createSlice({
@@ -21,13 +21,13 @@ export const searchSlice = createSlice({
   reducers: {
     addSearch: (state, action) => {
       const addLastSearch = diContainer.get<AddLastSearchUseCase>(
-        diService.AddLastSearchUseCase
+        diService.AddLastSearchUseCase,
       );
       return rightOrDefault(addLastSearch.invoke(action.payload), state);
     },
     removeSearch: () => {
       const cleanSearch = diContainer.get<CleanSearchUseCase>(
-        diService.CleanSearchUseCase
+        diService.CleanSearchUseCase,
       );
       cleanSearch.invoke();
     },
