@@ -51,6 +51,7 @@ const Search: React.FC<Props> = ({
         name="search"
         type="text"
         placeholder={placeholder}
+        aria-label={placeholder}
         onChange={handleChange}
         value={searchStr}
       />

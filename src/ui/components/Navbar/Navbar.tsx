@@ -47,7 +47,11 @@ const Navbar: React.FC = () => {
             </CustomLink>
           ))}
         </List>
-        <select value={lang} onChange={handleChange}>
+        <select
+          value={lang}
+          onChange={handleChange}
+          aria-label={t("Language")}
+        >
           {languages.map((item) => {
             return (
               <option key={item.value} value={item.value}>

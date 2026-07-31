@@ -42,6 +42,7 @@ export const ProductsTable: React.FC<ProductsTableInterface> = ({
           <Checkbox
             size="small"
             checked={isFavorite(params.row)}
+            slotProps={{ input: { "aria-label": String(t("Favorites")) } }}
             onClick={() => {
               handleFavoriteChange(params.row);
             }}
