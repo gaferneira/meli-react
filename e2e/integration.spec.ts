@@ -20,10 +20,10 @@ test.describe("react app", () => {
     const query = "Samsung";
     await page.locator("[name=search]").fill(query);
     await page.locator("[name=search]").press("Enter");
-    await expect(page.locator(".MuiDataGrid-row")).toHaveCount(5);
+    await expect(page.locator(".products-table-row")).toHaveCount(5);
 
     // Check 2 items
-    const checkboxes = page.locator(".MuiDataGrid-row [type=checkbox]");
+    const checkboxes = page.locator(".products-table-row [type=checkbox]");
     await checkboxes.first().check();
     await expect(checkboxes.first()).toBeChecked();
 
@@ -34,20 +34,20 @@ test.describe("react app", () => {
     await page.locator("ul.nav-bar-list>li").nth(1).click();
 
     // Check number of favorites
-    await expect(page.locator(".MuiDataGrid-row")).toHaveCount(2);
+    await expect(page.locator(".products-table-row")).toHaveCount(2);
 
     // Uncheck one favorite
-    await page.locator(".MuiDataGrid-row [type=checkbox]").last().uncheck();
+    await page.locator(".products-table-row [type=checkbox]").last().uncheck();
 
     // Check number of favorites again
-    await expect(page.locator(".MuiDataGrid-row")).toHaveCount(1);
+    await expect(page.locator(".products-table-row")).toHaveCount(1);
 
     // Go back
     await page.goBack();
 
     // Check states of the items
     const checkboxesAfterBack = page.locator(
-      ".MuiDataGrid-row [type=checkbox]",
+      ".products-table-row [type=checkbox]",
     );
     await expect(checkboxesAfterBack.first()).toBeChecked();
     await expect(checkboxesAfterBack.last()).not.toBeChecked();
