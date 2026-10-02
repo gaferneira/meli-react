@@ -9,17 +9,21 @@ Esto es un ejemplo de una aplicación en React desarrollada con clean architectu
 
 ## - Tecnologias utilizadas
 
-- TypeScript 5
+- TypeScript 6
 - Clean architecture
 - React 19
 - Redux Toolkit 2
+- React Router 8
+- Inversify 8 (dependency injection)
+- i18next (internationalization)
 - Vite 8
+- React Compiler
 - MUI 9
 - Emotion (styling)
 - Unit tests (vitest, testing-library)
 - Playwright, E2E tests
 - GitHub Actions
-- ESLint 9 (flat config)
+- ESLint 10 (flat config)
 - Prettier 3
 
 ## - Clean architecture
@@ -40,7 +44,7 @@ npm run test
 
 ## - Integration Testing
 
-Comando para correr Playwright
+Comando para correr Playwright (la API de MercadoLibre se simula en las pruebas)
 
 ```
 npm run e2e
@@ -53,6 +57,12 @@ npm run lint
 ```
 
 ## - Setup
+
+Requires Node.js 22.22+ (`.nvmrc` pins Node 24):
+
+```
+nvm use
+```
 
 Copy `.env.example` to `.env.local` and configure the required environment variables:
 
