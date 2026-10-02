@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import type React from "react";
+import { useState } from "react";
 import { Checkbox } from "@mui/material";
-import { DataGrid, GridRenderCellParams, GridPaginationModel, GridColDef } from "@mui/x-data-grid";
-import { Product } from "@/domain";
+import type {
+  GridRenderCellParams,
+  GridPaginationModel,
+  GridColDef,
+} from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
+import type { Product } from "@/domain";
 import useProductTable from "./useProductsTable";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";

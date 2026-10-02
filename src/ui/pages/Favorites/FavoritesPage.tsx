@@ -1,5 +1,5 @@
 import { ProductsTable, WithHookProps } from "@/ui";
-import React from "react";
+import type React from "react";
 import { Empty } from "./components";
 import useFavoritesPage from "./useFavoritesPage";
 

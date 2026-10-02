@@ -32,6 +32,7 @@ export default tseslint.config(
         "error",
         { allowObjectTypes: "always" },
       ],
+      "@typescript-eslint/consistent-type-imports": "error",
     },
   },
   prettier,

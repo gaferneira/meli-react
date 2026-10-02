@@ -32,8 +32,8 @@ Staying a Vite SPA — no metaframework migration in scope.
 
 ## Phase 4 — Polish
 
-- [ ] Re-audit `tsconfig.json` against TS5 strictness options (`noUncheckedIndexedAccess`, `verbatimModuleSyntax`) — good template selling point.
-- [ ] README: update tech list once the above lands.
+- [x] Re-audit `tsconfig.json` against TS5 strictness options (`noUncheckedIndexedAccess`, `verbatimModuleSyntax`) — good template selling point. Both options enabled. One file (CountrySlice) required an explicit type annotation on `initialState: Country` and a non-null assertion on `countryValues[0]!` to guard against the index-access `undefined` case (justified: static array with 18 guaranteed entries). ESLint rule `@typescript-eslint/consistent-type-imports` added and auto-fixed 74 type-only imports across src/ (no manual edits needed beyond the auto-fixes). Build, lint, and all 7 tests pass.
+- [x] README: update tech list once the above lands. Tech list refreshed to reflect all completed bumps (React 19, RTK 2, Vite 8, MUI 9, TS 5, ESLint 9, Prettier 3, Emotion) and Cypress references replaced with Playwright (`npm run e2e`).
 
 ## Suggested execution order
 

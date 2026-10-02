@@ -1,11 +1,6 @@
 import { inject, injectable } from "inversify";
-import {
-  analyzeException,
-  DataResult,
-  FavoriteRepository,
-  Left,
-  Product,
-} from "@/domain";
+import type { DataResult, FavoriteRepository, Product } from "@/domain";
+import { analyzeException, Left } from "@/domain";
 import diService from "@/core/diService";
 
 @injectable()

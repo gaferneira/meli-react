@@ -1,7 +1,9 @@
 import { inject, injectable } from "inversify";
-import { analyzeException, Failure, Product } from "../../entities";
-import { ProductRepository } from "../../repositories";
-import { Either, Left } from "../../utils/Either";
+import type { Failure, Product } from "../../entities";
+import { analyzeException } from "../../entities";
+import type { ProductRepository } from "../../repositories";
+import type { Either } from "../../utils/Either";
+import { Left } from "../../utils/Either";
 import diService from "@/core/diService";
 
 @injectable()

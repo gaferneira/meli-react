@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { CircularProgress } from "@mui/material";
 import { WithHookProps, SelectCountry, Search, ProductsTable } from "@/ui";
 import useHomePage from "./useHomePage";
