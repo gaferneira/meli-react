@@ -16,7 +16,7 @@
     "verbatimModuleSyntax": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
