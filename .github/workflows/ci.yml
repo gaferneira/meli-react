@@ -22,13 +22,13 @@ jobs:
     name: Build & Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "20"
 
       # npm cache
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ~/.npm-store
           key: ${{ runner.os }}-${{ hashFiles('**/npm-lock.yaml') }}
@@ -49,6 +49,14 @@ jobs:
       # Test
       - name: TEST
         run: npm run test:ci
+
+      # Install Playwright browsers
+      - name: INSTALL PLAYWRIGHT
+        run: npx playwright install chromium --with-deps
+
+      # E2E Tests
+      - name: E2E
+        run: npm run e2e
 
       # Upload dist artifacts
       #- uses: actions/upload-artifact@v2
