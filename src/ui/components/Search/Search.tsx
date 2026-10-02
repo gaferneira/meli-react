@@ -24,7 +24,7 @@ const Search: React.FC<Props> = ({
         onChange(value);
         if (storePrevQuery) storePrevQuery(value);
       }
-    }, 1000)
+    }, 1000),
   ).current;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

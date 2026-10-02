@@ -9,14 +9,14 @@ describe("ProductRepositoryImpl Test", () => {
     //GIVEN
     const axiosInstance: AxiosInstance = mock();
     const productRepositoryImpl = new ProductRepositoryImpl(
-      instance(axiosInstance)
+      instance(axiosInstance),
     );
     const country = "co";
     const query = "query";
     const axiosResponse = createSuccessAxiosResponse({ results: [] });
     //WHEN
     when(axiosInstance.get(anything(), anything())).thenReturn(
-      Promise.resolve(axiosResponse)
+      Promise.resolve(axiosResponse),
     );
     const response = await productRepositoryImpl.getProducts(country, query);
     //THEN
@@ -28,13 +28,13 @@ describe("ProductRepositoryImpl Test", () => {
     //GIVEN
     const axiosInstance: AxiosInstance = mock();
     const productRepositoryImpl = new ProductRepositoryImpl(
-      instance(axiosInstance)
+      instance(axiosInstance),
     );
     const country = "co";
     const query = "query";
     //WHEN
     when(axiosInstance.get(anything(), anything())).thenThrow(
-      new Error("Fail to connect to the server")
+      new Error("Fail to connect to the server"),
     );
     const response = await productRepositoryImpl.getProducts(country, query);
     //THEN
@@ -46,13 +46,13 @@ describe("ProductRepositoryImpl Test", () => {
     //GIVEN
     const axiosInstance: AxiosInstance = mock();
     const productRepositoryImpl = new ProductRepositoryImpl(
-      instance(axiosInstance)
+      instance(axiosInstance),
     );
     const productId = "2412";
     const axiosResponse = createSuccessAxiosResponse({});
     //WHEN
     when(axiosInstance.get(anything())).thenReturn(
-      Promise.resolve(axiosResponse)
+      Promise.resolve(axiosResponse),
     );
     const response = await productRepositoryImpl.getProduct(productId);
     //THEN
@@ -64,12 +64,12 @@ describe("ProductRepositoryImpl Test", () => {
     //GIVEN
     const axiosInstance: AxiosInstance = mock();
     const productRepositoryImpl = new ProductRepositoryImpl(
-      instance(axiosInstance)
+      instance(axiosInstance),
     );
     const productId = "2412";
     //WHEN
     when(axiosInstance.get(anything())).thenThrow(
-      new Error("Fail to connect to the server")
+      new Error("Fail to connect to the server"),
     );
     const response = await productRepositoryImpl.getProduct(productId);
     //THEN

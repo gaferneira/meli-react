@@ -16,7 +16,7 @@ export class ProductRepositoryImpl implements ProductRepository {
 
   async getProducts(
     country: string,
-    query: string
+    query: string,
   ): Promise<DataResult<Product[]>> {
     const endpoint = getSearchProductsEndpoint(country, query);
     try {
@@ -24,7 +24,7 @@ export class ProductRepositoryImpl implements ProductRepository {
         endpoint,
         {
           signal: getCancelToken("searchProduct"),
-        }
+        },
       );
       const array: ProductDto[] = response.data.results;
       return Right(array.map((p) => ProductDtoToEntity(p)));

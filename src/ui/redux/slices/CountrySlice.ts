@@ -12,7 +12,7 @@ const initialState = rightOrDefault(
   diContainer
     .get<GetCurrentCountryUseCase>(diService.GetCurrentCountryUseCase)
     .invoke(),
-  countryValues[0]
+  countryValues[0],
 );
 
 export const countrySlice = createSlice({
@@ -21,7 +21,7 @@ export const countrySlice = createSlice({
   reducers: {
     selectCountry: (state, action) => {
       const updateCurrentCountry = diContainer.get<UpdateCurrentCountryUseCase>(
-        diService.UpdateCurrentCountryUseCase
+        diService.UpdateCurrentCountryUseCase,
       );
       return rightOrDefault(updateCurrentCountry.invoke(action.payload), state);
     },

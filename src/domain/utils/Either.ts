@@ -5,7 +5,7 @@ export type Either<L, R> = Left<L> | Right<R>;
 export const match = <T, L, R>(
   input: Either<L, R>,
   left: (left: L) => T,
-  right: (right: R) => T
+  right: (right: R) => T,
 ) => {
   switch (input.tag) {
     case "left":

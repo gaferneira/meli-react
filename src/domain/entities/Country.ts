@@ -9,7 +9,7 @@ function newCountry(
   currency: string,
   id: string,
   code: string,
-  name: string
+  name: string,
 ): Country {
   return { currency, id, code, name };
 }

@@ -16,7 +16,7 @@ function withHookProps<
     ReturnType<Hook>
   >,
   HookProps = {},
-  AdditionalProps = {}
+  AdditionalProps = {},
 >(hook: Hook, WrappedComponent: Component, displayName?: string) {
   const ComponentWithHook = ({
     hookProps,

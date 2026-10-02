@@ -7,12 +7,12 @@ import diService from "@/core/diService";
 @injectable()
 export class GetProductsUseCase {
   constructor(
-    @inject(diService.ProductRepository) private repository: ProductRepository
+    @inject(diService.ProductRepository) private repository: ProductRepository,
   ) {}
 
   async invoke(
     country: string,
-    query: string
+    query: string,
   ): Promise<Either<Failure, Product[]>> {
     try {
       return await this.repository.getProducts(country, query);

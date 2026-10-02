@@ -11,7 +11,7 @@ import diService from "@/core/diService";
 
 const initialState: Product[] = rightOrDefault(
   diContainer.get<GetFavoritesUseCase>(diService.GetFavoritesUseCase).invoke(),
-  []
+  [],
 );
 
 export const favoriteSlice = createSlice({
@@ -20,17 +20,17 @@ export const favoriteSlice = createSlice({
   reducers: {
     addFavorite: (state, action) => {
       const addFavoriteUseCase = diContainer.get<AddFavoriteUseCase>(
-        diService.AddFavoriteUseCase
+        diService.AddFavoriteUseCase,
       );
       return rightOrDefault(addFavoriteUseCase.invoke(action.payload), state);
     },
     removeFavorite: (state, action) => {
       const removeFavoriteUseCase = diContainer.get<RemoveFavoriteUseCase>(
-        diService.RemoveFavoriteUseCase
+        diService.RemoveFavoriteUseCase,
       );
       return rightOrDefault(
         removeFavoriteUseCase.invoke(action.payload),
-        state
+        state,
       );
     },
   },
