@@ -7,7 +7,7 @@ import diService from "@/core/diService";
 @injectable()
 export class GetLastSearchUseCase {
   constructor(
-    @inject(diService.FavoriteRepository) private repository: SearchRepository,
+    @inject(diService.SearchRepository) private repository: SearchRepository,
   ) {}
 
   invoke(): DataResult<string> {
