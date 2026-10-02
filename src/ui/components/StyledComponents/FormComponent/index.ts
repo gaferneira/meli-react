@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import Input from "./Input";
 
 const FormComponent: any = styled.div`

@@ -3,10 +3,10 @@ import { pages } from "@/ui";
 import { AppBar, Toolbar } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import CustomLink from "./CustomLink";
 
-export const List = styled.ul`
+export const List = styled.ul<{ children?: React.ReactNode; className?: string }>`
   list-style: none;
   display: flex;
   cursor: default;

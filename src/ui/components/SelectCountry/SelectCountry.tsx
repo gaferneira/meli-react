@@ -1,7 +1,7 @@
 import { countryValues } from "@/domain";
 import { Button } from "@mui/material";
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 export interface SelectCountryInterface {
   onSelectCountry: (code: string) => void;
