@@ -1,7 +1,23 @@
 import { test, expect } from "@playwright/test";
 
+const products = Array.from({ length: 5 }, (_, i) => ({
+  id: `MCO${i + 1}`,
+  title: `Samsung product ${i + 1}`,
+  price: 1000 * (i + 1),
+  thumbnail: "",
+  tags: [],
+}));
+
 test.describe("react app", () => {
   test.beforeEach(async ({ page }) => {
+    // The real Mercado Libre API requires auth and is not reachable from CI.
+    await page.route("**/sites/*/search*", (route) =>
+      route.fulfill({ json: { results: products } }),
+    );
+    await page.route("**/items/*", (route) => {
+      const id = route.request().url().split("/").pop();
+      return route.fulfill({ json: products.find((p) => p.id === id) });
+    });
     await page.goto("/");
   });
 
@@ -37,7 +53,7 @@ test.describe("react app", () => {
     await expect(page.locator(".products-table-row")).toHaveCount(2);
 
     // Uncheck one favorite
-    await page.locator(".products-table-row [type=checkbox]").last().uncheck();
+    await page.locator(".products-table-row [type=checkbox]").last().click();
 
     // Check number of favorites again
     await expect(page.locator(".products-table-row")).toHaveCount(1);
