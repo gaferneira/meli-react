@@ -1,15 +1,18 @@
 import type React from "react";
 import { useState } from "react";
-import { Checkbox } from "@mui/material";
-import type {
-  GridRenderCellParams,
-  GridPaginationModel,
-  GridColDef,
-} from "@mui/x-data-grid";
-import { DataGrid } from "@mui/x-data-grid";
+import {
+  Checkbox,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+} from "@mui/material";
 import type { Product } from "@/domain";
 import useProductTable from "./useProductsTable";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 
 export interface ProductsTableInterface {
@@ -17,76 +20,72 @@ export interface ProductsTableInterface {
   favorites: Product[];
 }
 
+const PAGE_SIZE = 5;
+
 export const ProductsTable: React.FC<ProductsTableInterface> = ({
   products,
   favorites,
 }: ProductsTableInterface) => {
-  const [paginationModel, setPaginationModel] = useState<GridPaginationModel>({
-    pageSize: 5,
-    page: 0,
-  });
+  const [page, setPage] = useState(0);
 
   const { isFavorite, handleFavoriteChange } = useProductTable(favorites);
 
   const { t } = useTranslation();
 
-  const columns: GridColDef<Product>[] = [
-    {
-      field: "actions",
-      type: "actions",
-      sortable: false,
-      headerName: "",
-      width: 50,
-      renderCell: (params: GridRenderCellParams) => (
-        <>
-          <Checkbox
-            size="small"
-            checked={isFavorite(params.row)}
-            slotProps={{ input: { "aria-label": String(t("Favorites")) } }}
-            onClick={() => {
-              handleFavoriteChange(params.row);
-            }}
-          />
-        </>
-      ),
-    } as GridColDef<Product>,
-    {
-      field: "id",
-      headerName: String(t("Link")),
-      flex: 1,
-      renderCell: (params: GridRenderCellParams) => (
-        <>
-          <Link to={`/detail/${params.value}`} state={{ product: params.row }}>
-            {t("Details")}
-          </Link>
-        </>
-      ),
-    },
-    {
-      field: "title",
-      headerName: String(t("Title")),
-      flex: 1,
-      renderCell: (params: GridRenderCellParams) => <>{params.value}</>,
-    },
-    {
-      field: "price",
-      headerName: String(t("Price")),
-      flex: 1,
-      renderCell: (params: GridRenderCellParams) => <>{params.value} </>,
-    },
-  ];
+  const paginatedProducts = products.slice(
+    page * PAGE_SIZE,
+    page * PAGE_SIZE + PAGE_SIZE,
+  );
+
   return (
     <div>
-      <DataGrid
-        columns={columns}
-        rows={products}
-        disableColumnSelector
-        disableRowSelectionOnClick
-        autoHeight
-        paginationModel={paginationModel}
-        onPaginationModelChange={setPaginationModel}
-        pageSizeOptions={[5]}
-        getRowId={(row: any) => row.id}
+      <TableContainer>
+        <Table size="small" aria-label={String(t("Products"))}>
+          <TableHead>
+            <TableRow>
+              <TableCell width={50} />
+              <TableCell>{t("Link")}</TableCell>
+              <TableCell>{t("Title")}</TableCell>
+              <TableCell>{t("Price")}</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {paginatedProducts.map((product) => (
+              <TableRow key={product.id} className="products-table-row">
+                <TableCell width={50}>
+                  <Checkbox
+                    size="small"
+                    checked={isFavorite(product)}
+                    slotProps={{
+                      input: { "aria-label": String(t("Favorites")) },
+                    }}
+                    onClick={() => {
+                      handleFavoriteChange(product);
+                    }}
+                  />
+                </TableCell>
+                <TableCell>
+                  <Link
+                    to={`/detail/${product.id}`}
+                    state={{ product }}
+                  >
+                    {t("Details")}
+                  </Link>
+                </TableCell>
+                <TableCell>{product.title}</TableCell>
+                <TableCell>{product.price}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        component="div"
+        count={products.length}
+        page={page}
+        onPageChange={(_, newPage) => setPage(newPage)}
+        rowsPerPage={PAGE_SIZE}
+        rowsPerPageOptions={[PAGE_SIZE]}
       />
     </div>
   );

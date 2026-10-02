@@ -5,7 +5,11 @@ import * as path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      babel: {
+        plugins: [["babel-plugin-react-compiler", {}]],
+      },
+    }),
     visualizer({
       filename: "dist/stats.html",
       gzipSize: true,

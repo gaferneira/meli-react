@@ -52,6 +52,23 @@ npm run e2e
 npm run lint
 ```
 
+## - Setup
+
+Copy `.env.example` to `.env.local` and configure the required environment variables:
+
+```
+cp .env.example .env.local
+```
+
+Then run the development server:
+
+```
+npm run dev
+```
+
+Required environment variables:
+- `VITE_API_URL`: Base URL for the MercadoLibre API (e.g., `https://api.mercadolibre.com`)
+
 ### Desarrollado por
 
 Silvia Juliana Torres [linkedIn](https://www.linkedin.com/in/silvia-juliana-torres-gaona)
